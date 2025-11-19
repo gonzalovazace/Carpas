@@ -8,92 +8,461 @@
     /* ---------------------------------- */
     /* ESTILOS GENERALES Y LAYOUT */
     /* ---------------------------------- */
-    body { font-family: sans-serif; background: #f8f5f0; margin: 0; padding-bottom: 80px; }
-    .section { padding: 24px 15px; max-width: 700px; margin: auto; }
+    * { box-sizing: border-box; }
+    body { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        background: #f8f5f0; 
+        margin: 0; 
+        padding-bottom: 80px; 
+    }
+    .section { 
+        padding: 24px 15px; 
+        max-width: 700px; 
+        margin: auto; 
+    }
     .item { 
-        display: flex; justify-content: space-between; align-items: flex-start; 
-        padding: 12px 0; border-bottom: 1px solid #eee; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: flex-start; 
+        padding: 16px 0; 
+        border-bottom: 1px solid #eee; 
     }
-    .item strong:last-child { font-size: 16px; color: #222; margin-left: 10px; flex-shrink: 0; }
-    .description { font-size: 13px; color: #777; margin: 4px 0 8px 0; }
+    .item-details { flex: 1; }
+    .item strong:last-child { 
+        font-size: 18px; 
+        color: #222; 
+        margin-left: 15px; 
+        flex-shrink: 0; 
+        white-space: nowrap;
+    }
+    .description { 
+        font-size: 13px; 
+        color: #777; 
+        margin: 6px 0 10px 0; 
+        line-height: 1.4;
+    }
     .add-btn { 
-        padding: 6px 10px; background: #17a2b8; color: #fff; border: none; 
-        border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold;
-        margin-top: 10px; /* Para separarlo de las opciones */
+        padding: 10px 16px; 
+        background: #17a2b8; 
+        color: #fff; 
+        border: none; 
+        border-radius: 6px; 
+        cursor: pointer; 
+        font-size: 14px; 
+        font-weight: bold;
+        margin-top: 10px;
+        min-height: 44px; /* Mejor para touch en móvil */
+        transition: background 0.2s, transform 0.1s;
     }
-    .section h2 { text-align: center; margin-bottom: 16px; border-bottom: 2px solid #555; padding-bottom: 6px; font-weight: bold; }
+    .add-btn:active {
+        transform: scale(0.97);
+    }
+    .section h2 { 
+        text-align: center; 
+        margin-bottom: 16px; 
+        border-bottom: 2px solid #555; 
+        padding-bottom: 8px; 
+        font-weight: bold; 
+        position: sticky;
+        top: 58px;
+        background: #f8f5f0;
+        z-index: 5;
+        padding-top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    .section h2 .icon {
+        font-size: 24px;
+    }
 
     /* ---------------------------------- */
     /* NAVEGACIÓN (HAMBURGUESA) */
     /* ---------------------------------- */
     header { 
-        background: #ffffffcc; position: sticky; top: 0; backdrop-filter: blur(8px); 
-        padding: 12px; border-bottom: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
-        z-index: 10; display: flex; justify-content: space-between; align-items: center;
+        background: #ffffffcc; 
+        position: sticky; 
+        top: 0; 
+        backdrop-filter: blur(8px); 
+        padding: 12px; 
+        border-bottom: 1px solid #ddd; 
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+        z-index: 10; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
     }
-    #menuBtn { font-size: 24px; background: none; border: none; cursor: pointer; color: #333; padding: 0 10px; }
+    #menuBtn { 
+        font-size: 28px; 
+        background: none; 
+        border: none; 
+        cursor: pointer; 
+        color: #333; 
+        padding: 8px 12px;
+        min-width: 44px;
+        min-height: 44px;
+    }
     #menuNav { 
-        position: fixed; top: 0; left: -250px; width: 250px; height: 100%; 
-        background: #fff; z-index: 20; padding-top: 50px; box-shadow: 2px 0 5px rgba(0,0,0,0.5); 
-        transition: left 0.3s; 
+        position: fixed; 
+        top: 0; 
+        left: -280px; 
+        width: 280px; 
+        height: 100%; 
+        background: #fff; 
+        z-index: 20; 
+        padding-top: 60px; 
+        box-shadow: 2px 0 5px rgba(0,0,0,0.5); 
+        transition: left 0.3s ease; 
     }
     #menuNav.open { left: 0; }
     #menuNav a { 
-        display: block; padding: 10px 20px; text-decoration: none; color: #333; 
-        border-bottom: 1px solid #eee; 
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 20px; 
+        text-decoration: none; 
+        color: #333; 
+        border-bottom: 1px solid #eee;
+        font-size: 16px;
+        transition: background 0.2s;
     }
-    #closeMenuBtn { position: absolute; top: 10px; right: 10px; font-size: 24px; cursor: pointer; }
+    #menuNav a:active {
+        background: #f0f0f0;
+    }
+    #menuNav a .icon {
+        font-size: 22px;
+        width: 30px;
+        text-align: center;
+    }
+    #closeMenuBtn { 
+        position: absolute; 
+        top: 10px; 
+        right: 10px; 
+        font-size: 28px; 
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 8px;
+        min-width: 44px;
+        min-height: 44px;
+    }
 
     /* ---------------------------------- */
     /* BOTÓN FLOTANTE FINALIZAR COMPRA */
     /* ---------------------------------- */
     #floatBtn {
-        position: fixed; bottom: 20px; right: 20px;
-        background: #25d366; color: white; padding: 12px 18px; 
-        border: none; border-radius: 50px; font-size: 16px; 
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3); z-index: 15;
-        font-weight: bold; cursor: pointer;
+        position: fixed; 
+        bottom: 20px; 
+        right: 20px;
+        background: #25d366; 
+        color: white; 
+        padding: 16px 24px; 
+        border: none; 
+        border-radius: 50px; 
+        font-size: 16px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+        z-index: 15;
+        font-weight: bold; 
+        cursor: pointer;
+        min-height: 56px;
+        transition: transform 0.2s, box-shadow 0.2s;
     }
-    #cartBadge { background: red; color: white; border-radius: 50%; padding: 2px 6px; margin-left: 8px; font-size: 12px; }
+    #floatBtn:active {
+        transform: scale(0.95);
+    }
+    #cartBadge { 
+        background: red; 
+        color: white; 
+        border-radius: 50%; 
+        padding: 3px 8px; 
+        margin-left: 8px; 
+        font-size: 13px;
+        font-weight: bold;
+    }
 
     /* ---------------------------------- */
     /* MODAL DEL CARRITO */
     /* ---------------------------------- */
     #cartModal { 
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-        background: rgba(0,0,0,0.7); display: none; z-index: 50;
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background: rgba(0,0,0,0.7); 
+        display: none; 
+        z-index: 50;
+        animation: fadeIn 0.2s;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
     #cartContent { 
-        position: absolute; bottom: 0; left: 0; right: 0; 
-        background: #fff; padding: 20px; border-top-left-radius: 15px; 
-        border-top-right-radius: 15px; max-height: 80%; overflow-y: auto;
+        position: absolute; 
+        bottom: 0; 
+        left: 0; 
+        right: 0; 
+        background: #fff; 
+        padding: 20px; 
+        border-top-left-radius: 20px; 
+        border-top-right-radius: 20px; 
+        max-height: 85%; 
+        overflow-y: auto;
+        animation: slideUp 0.3s;
+    }
+    @keyframes slideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
     }
     .cart-item { 
-        display: flex; justify-content: space-between; align-items: center; 
-        padding: 8px 0; border-bottom: 1px dashed #ccc; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 12px 0; 
+        border-bottom: 1px dashed #ccc; 
+    }
+    .cart-item-left {
+        flex: 1;
+        padding-right: 10px;
+    }
+    .cart-item-name {
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    .cart-item-notes {
+        font-size: 12px;
+        color: #666;
+        font-style: italic;
+    }
+    .cart-item-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .qty-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #f0f0f0;
+        border-radius: 20px;
+        padding: 4px;
+    }
+    .qty-btn {
+        background: white;
+        border: none;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .qty-btn:active {
+        transform: scale(0.9);
+    }
+    .qty-display {
+        min-width: 24px;
+        text-align: center;
+        font-weight: bold;
     }
     .remove-btn { 
-        background: none; border: none; color: #cc0000; cursor: pointer; 
-        font-size: 18px; padding: 0 5px; 
+        background: none; 
+        border: none; 
+        color: #cc0000; 
+        cursor: pointer; 
+        font-size: 20px; 
+        padding: 4px 8px;
+        min-width: 36px;
+        min-height: 36px;
     }
-    #total { margin-top: 15px; font-size: 18px; font-weight: bold; }
+    #total { 
+        margin-top: 20px; 
+        font-size: 20px; 
+        font-weight: bold;
+        text-align: center;
+        padding: 12px;
+        background: #f8f8f8;
+        border-radius: 8px;
+    }
+    
+    /* Formulario de entrega */
+    .delivery-form {
+        margin-top: 20px;
+        padding: 16px;
+        background: #f9f9f9;
+        border-radius: 8px;
+        border: 2px solid #ddd;
+    }
+    .delivery-form h4 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        color: #333;
+    }
+    .form-group {
+        margin-bottom: 14px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .form-group select,
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        min-height: 44px;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #17a2b8;
+    }
+    
     #sendBtn { 
-        width: 100%; padding: 14px; background: #25d366; color: white; 
-        border: none; border-radius: 8px; font-size: 16px; cursor: pointer; 
-        font-weight: bold; margin-top: 15px;
+        width: 100%; 
+        padding: 16px; 
+        background: #25d366; 
+        color: white; 
+        border: none; 
+        border-radius: 8px; 
+        font-size: 17px; 
+        cursor: pointer; 
+        font-weight: bold; 
+        margin-top: 15px;
+        min-height: 52px;
+        transition: background 0.2s, transform 0.1s;
+    }
+    #sendBtn:active {
+        transform: scale(0.98);
+    }
+    #sendBtn:disabled {
+        background: #ccc;
+        cursor: not-allowed;
     }
 
     /* ESTILOS DEL LOGO */
     #mainLogo {
-        height: 35px; 
+        height: 40px; 
         width: auto;
+    }
+
+    /* Opciones expandibles */
+    .options-panel {
+        margin-top: 12px;
+        border-top: 1px dashed #ccc;
+        padding-top: 12px;
+    }
+    .options-section {
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+        border-bottom: 1px dashed #eee;
+    }
+    .options-section:last-child {
+        border-bottom: none;
+    }
+    .options-section strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    #pan-select,
+    #tostado-check {
+        margin-top: 6px;
+    }
+    select {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        min-height: 40px;
+    }
+    .adicionales-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 6px;
+    }
+    .adicionales-grid label {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        padding: 6px;
+        background: #f9f9f9;
+        border-radius: 4px;
+    }
+    .adicionales-grid input[type="checkbox"] {
+        margin-right: 6px;
+        min-width: 18px;
+        min-height: 18px;
+    }
+    
+    /* Campo de notas */
+    .notes-field {
+        margin-top: 12px;
+    }
+    .notes-field label {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 6px;
+        color: #555;
+    }
+    .notes-field textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        resize: vertical;
+        min-height: 60px;
+        font-family: inherit;
+    }
+
+    /* Toast de notificación */
+    .toast {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #28a745;
+        color: white;
+        padding: 14px 20px;
+        border-radius: 8px;
+        z-index: 100;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        animation: slideInRight 0.3s, fadeOut 0.3s 2.7s;
+        max-width: calc(100% - 40px);
+    }
+    @keyframes slideInRight {
+        from {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+            transform: translateX(400px);
+        }
     }
   </style>
 </head>
 <body>
 <header>
     <button id="menuBtn" onclick="toggleMenu()">☰</button>
-    <img src="logo santa.png" alt="Logo del Restaurante" id="mainLogo"> 
+    <img src="logo santa.png" alt="Logo" id="mainLogo" onerror="this.style.display='none'"> 
 </header>
 
 <nav id="menuNav">
@@ -111,6 +480,23 @@
         <h3 style="margin-top:0;">🧺 Tu Pedido</h3>
         <div id="cartItems"></div>
         <div id="total"></div>
+        
+        <div class="delivery-form">
+            <h4>📍 Datos de Entrega</h4>
+            <div class="form-group">
+                <label for="balneario">Balneario *</label>
+                <select id="balneario" required>
+                    <option value="">Seleccionar balneario</option>
+                    <option value="Mar del Plata">Mar del Plata</option>
+                    <option value="La Reina">La Reina</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ubicacion">Número de Carpa/Sombrilla *</label>
+                <input type="text" id="ubicacion" placeholder="Ej: Carpa 15 o Sombrilla 8" required />
+            </div>
+        </div>
+        
         <button id="sendBtn" onclick="sendToWhatsApp()">Enviar Pedido por WhatsApp</button>
         <p style="text-align: center; font-size: 12px; margin-top: 10px; color: #777;">Toca fuera del cuadro para cerrar</p>
     </div>
@@ -118,14 +504,13 @@
 
 <script>
 // ===============================================
-// 1. CONSTANTES DE OPCIONES Y DATOS DEL MENÚ
+// 1. CONSTANTES Y DATOS
 // ===============================================
 
 let cart = [];
 let data = {};
 const WAPP_NUMBER = '5492235776624';
 
-// Separación de Adicionales
 const ADICIONALES_COMUNES = [
     { name: "Jamón", price: 3000 },
     { name: "Queso", price: 3000 },
@@ -145,9 +530,21 @@ const SANDWICH_PANS = ["Árabe", "Pebete", "Francés"];
 const SANDWICH_CATEGORIES = ['sandwiches-frios', 'sandwiches-calientes', 'vegetarianos'];
 const ENSALADA_CATEGORIES = ['ensaladas'];
 
+// Íconos por categoría
+const CATEGORY_ICONS = {
+    'sandwiches-frios': '🥪',
+    'sandwiches-calientes': '🌯',
+    'vegetarianos': '🥗',
+    'ensaladas': '🥗',
+    'platos': '🍽️',
+    'bebidas': '🥤',
+    'postres': '🍰',
+    'desayunos': '☕',
+    'default': '🍴'
+};
 
 // ===============================================
-// 2. FUNCIONES DE UTILIDAD Y LÓGICA DE CARRITO
+// 2. FUNCIONES DE UTILIDAD
 // ===============================================
 
 function formatPrice(price) {
@@ -169,8 +566,43 @@ function hideCartModal(event) {
     }
 }
 
+// ===============================================
+// 3. GESTIÓN DEL CARRITO
+// ===============================================
+
+function loadCartFromStorage() {
+    const saved = localStorage.getItem('cart');
+    if (saved) {
+        try {
+            cart = JSON.parse(saved);
+        } catch (e) {
+            cart = [];
+        }
+    }
+}
+
+function saveCartToStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function addToCart(itemData) {
+    cart.push(itemData);
+    saveCartToStorage();
+    renderCart();
+    showToast(`✓ ${itemData.baseName} agregado al carrito`);
+}
+
+function updateQuantity(index, change) {
+    if (cart[index]) {
+        cart[index].quantity = Math.max(1, cart[index].quantity + change);
+        saveCartToStorage();
+        renderCart();
+    }
+}
+
 function removeItem(index) {
     cart.splice(index, 1);
+    saveCartToStorage();
     renderCart();
 }
 
@@ -182,6 +614,7 @@ function renderCart() {
     
     cartItemsContainer.innerHTML = '';
     let total = 0;
+    let totalItems = 0;
     
     if (cart.length === 0) {
         floatBtn.style.display = 'none';
@@ -192,47 +625,99 @@ function renderCart() {
 
     floatBtn.style.display = 'block';
 
-    for (let i = 0; i < cart.length; i++) {
-        const item = cart[i];
-        total += item.price;
+    cart.forEach((item, i) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        totalItems += item.quantity;
         
         const div = document.createElement('div');
         div.className = 'cart-item';
         div.innerHTML = `
-            <span>${item.name}</span>
-            <span>
-                <strong>${formatPrice(item.price)}</strong>
-                <button class='remove-btn' onclick="removeItem(${i})">X</button>
-            </span>
+            <div class="cart-item-left">
+                <div class="cart-item-name">${item.name}</div>
+                ${item.notes ? `<div class="cart-item-notes">"${item.notes}"</div>` : ''}
+            </div>
+            <div class="cart-item-right">
+                <div class="qty-controls">
+                    <button class='qty-btn' onclick="updateQuantity(${i}, -1)">−</button>
+                    <span class="qty-display">${item.quantity}</span>
+                    <button class='qty-btn' onclick="updateQuantity(${i}, 1)">+</button>
+                </div>
+                <strong>${formatPrice(itemTotal)}</strong>
+                <button class='remove-btn' onclick="removeItem(${i})">🗑️</button>
+            </div>
         `;
         cartItemsContainer.appendChild(div);
-    }
+    });
     
-    const item_count = cart.length;
     totalElement.innerHTML = `<strong>Total: ${formatPrice(total)}</strong>`;
-    cartBadge.innerText = item_count;
+    cartBadge.innerText = totalItems;
 }
 
+// ===============================================
+// 4. NOTIFICACIONES TOAST
+// ===============================================
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+// ===============================================
+// 5. ENVÍO POR WHATSAPP
+// ===============================================
+
 function sendToWhatsApp() {
-    if (!cart.length) return;
+    if (!cart.length) {
+        showToast('⚠️ El carrito está vacío');
+        return;
+    }
     
-    const header = encodeURIComponent("¡Hola! Me gustaría hacer el siguiente pedido:");
+    const balneario = document.getElementById('balneario').value;
+    const ubicacion = document.getElementById('ubicacion').value.trim();
     
-    const itemsList = cart.map(item => 
-        encodeURIComponent(`- ${item.name} (${formatPrice(item.price)})`)
-    ).join("%0A"); 
+    if (!balneario) {
+        showToast('⚠️ Por favor selecciona el balneario');
+        document.getElementById('balneario').focus();
+        return;
+    }
     
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
-    const totalMsg = encodeURIComponent(`Total estimado: ${formatPrice(total)}`);
+    if (!ubicacion) {
+        showToast('⚠️ Por favor indica tu carpa/sombrilla');
+        document.getElementById('ubicacion').focus();
+        return;
+    }
     
-    const message = `${header}%0A%0A${itemsList}%0A%0A${totalMsg}%0A%0AGracias!`;
+    const header = encodeURIComponent("🏖️ ¡Hola! Me gustaría hacer el siguiente pedido:");
+    const deliveryInfo = encodeURIComponent(`\n📍 Balneario: ${balneario}\n🏖️ Ubicación: ${ubicacion}\n`);
+    
+    const itemsList = cart.map(item => {
+        let line = `- ${item.name}`;
+        if (item.quantity > 1) {
+            line += ` x${item.quantity}`;
+        }
+        if (item.notes) {
+            line += ` (${item.notes})`;
+        }
+        line += ` - ${formatPrice(item.price * item.quantity)}`;
+        return encodeURIComponent(line);
+    }).join("%0A");
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const totalMsg = encodeURIComponent(`\n💰 Total: ${formatPrice(total)}`);
+    
+    const message = `${header}%0A${deliveryInfo}%0A${itemsList}${totalMsg}%0A%0A¡Gracias!`;
     
     const url = `https://wa.me/${WAPP_NUMBER}?text=${message}`;
     window.open(url, '_blank');
 }
 
-
-// --- LÓGICA AVANZADA DE OPCIONES ---
+// ===============================================
+// 6. OPCIONES Y AGREGADO DE PRODUCTOS
+// ===============================================
 
 function toggleOptions(itemId) {
     const optionsDiv = document.getElementById(`options-${itemId}`);
@@ -240,35 +725,34 @@ function toggleOptions(itemId) {
     
     if (optionsDiv.style.display === 'block') {
         optionsDiv.style.display = 'none';
-        btn.innerText = '➕ Agregar Opciones/Adicionales';
+        btn.innerText = '➕ Opciones y Adicionales';
         btn.style.background = '#5a6268';
     } else {
         optionsDiv.style.display = 'block';
         btn.innerText = '➖ Cerrar Opciones';
-        btn.style.background = '#dc3545'; // Color de cerrar
+        btn.style.background = '#dc3545';
     }
 }
 
-
 function resetItemOptions(itemId) {
-    // Reset Pan/Tostado
     const panSelect = document.getElementById(`pan-${itemId}`);
     if (panSelect) panSelect.selectedIndex = 0;
     
     const tostadoCheck = document.getElementById(`tostado-${itemId}`);
     if (tostadoCheck) tostadoCheck.checked = false;
     
-    // Reset Adicionales
     const adicionalesChecks = document.querySelectorAll(`#adicionales-${itemId} input[type="checkbox"]`);
     adicionalesChecks.forEach(check => check.checked = false);
     
-    // Ocultar el panel de opciones
-    document.getElementById(`options-${itemId}`).style.display = 'none';
+    const notesField = document.getElementById(`notes-${itemId}`);
+    if (notesField) notesField.value = '';
     
-    // Restablecer el botón de opciones
+    const optionsDiv = document.getElementById(`options-${itemId}`);
+    if (optionsDiv) optionsDiv.style.display = 'none';
+    
     const btnOptions = document.getElementById(`btn-options-${itemId}`);
     if (btnOptions) {
-        btnOptions.innerText = '➕ Agregar Opciones/Adicionales';
+        btnOptions.innerText = '➕ Opciones y Adicionales';
         btnOptions.style.background = '#5a6268';
     }
 }
@@ -279,27 +763,28 @@ function prepareAndAddToCart(itemId, baseName, basePrice, categoryId) {
     let details = [];
 
     const isSandwich = SANDWICH_CATEGORIES.includes(categoryId);
+    const isEnsalada = ENSALADA_CATEGORIES.includes(categoryId);
+    const hasOptions = isSandwich || isEnsalada;
 
-    // 1. Lógica de Sándwich (Pan y Tostado)
+    // 1. Opciones de Sándwich
     if (isSandwich) {
         const panSelect = document.getElementById(`pan-${itemId}`);
         const pan = panSelect ? panSelect.value : '';
         const tostadoCheck = document.getElementById(`tostado-${itemId}`);
         const tostado = tostadoCheck ? tostadoCheck.checked : false;
 
-        if (pan === '' || panSelect.selectedIndex === 0) {
-             // Si es un sándwich y no eligió pan, avisamos y salimos
-            alert("Por favor, selecciona una opción de Pan.");
+        if (!hasOptions || (isSandwich && (!pan || panSelect.selectedIndex === 0))) {
+            showToast('⚠️ Por favor, selecciona el tipo de pan');
             return;
         }
 
         details.push(`Pan: ${pan}`);
         if (tostado) {
-            details.push("Tostado: Sí");
+            details.push("Tostado");
         }
     }
 
-    // 2. Lógica de Adicionales
+    // 2. Adicionales
     const adicionalesChecks = document.querySelectorAll(`#adicionales-${itemId} input[type="checkbox"]:checked`);
     let adicionalesList = [];
 
@@ -314,33 +799,37 @@ function prepareAndAddToCart(itemId, baseName, basePrice, categoryId) {
         details.push(`+ ${adicionalesList.join(", ")}`);
     }
 
-    // Construcción del nombre final para el carrito
+    // 3. Notas especiales
+    const notesField = document.getElementById(`notes-${itemId}`);
+    const notes = notesField ? notesField.value.trim() : '';
+
+    // Construcción del nombre
     const detailsString = details.length > 0 ? ` [${details.join(" / ")}]` : '';
     const finalItemName = baseName + detailsString;
     
-    // Añadir al carrito con el precio y nombre final
-    cart.push({ 
-        name: finalItemName, 
-        price: finalPrice 
+    // Agregar al carrito
+    addToCart({ 
+        name: finalItemName,
+        baseName: baseName,
+        price: finalPrice,
+        quantity: 1,
+        notes: notes
     });
     
-    // Limpiar y ocultar las opciones después de agregar
     resetItemOptions(itemId);
-    
-    renderCart();
 }
 
-
 // ===============================================
-// 3. FUNCIONES DE RENDERIZADO (MENÚ PRINCIPAL)
+// 7. RENDERIZADO DEL MENÚ
 // ===============================================
 
 function renderMenu(categories) {
     const nav = document.getElementById('menuNav');
     categories.forEach(cat => {
+        const icon = CATEGORY_ICONS[cat.id] || CATEGORY_ICONS['default'];
         const a = document.createElement('a');
         a.href = `#${cat.id}`;
-        a.innerText = cat.name;
+        a.innerHTML = `<span class="icon">${icon}</span><span>${cat.name}</span>`;
         a.onclick = toggleMenu; 
         nav.appendChild(a);
     });
@@ -351,10 +840,11 @@ function renderSections(categories) {
     content.innerHTML = ''; 
 
     categories.forEach(cat => {
+        const icon = CATEGORY_ICONS[cat.id] || CATEGORY_ICONS['default'];
         const sec = document.createElement('section');
         sec.className = 'section';
         sec.id = cat.id;
-        sec.innerHTML = `<h2>${cat.name}</h2>`;
+        sec.innerHTML = `<h2><span class="icon">${icon}</span><span>${cat.name}</span></h2>`;
         
         cat.items.forEach((item, index) => {
             const itemId = `${cat.id}-${index}`;
@@ -363,116 +853,14 @@ function renderSections(categories) {
 
             const isSandwich = SANDWICH_CATEGORIES.includes(cat.id);
             const isEnsalada = ENSALADA_CATEGORIES.includes(cat.id);
-            
             const hasOptions = isSandwich || isEnsalada;
 
             if (hasOptions) {
-                
-                // Generar los adicionales según la categoría
-                let adicionales = [...ADICIONALES_COMUNES]; // Comunes para todos
+                let adicionales = [...ADICIONALES_COMUNES];
                 if (isEnsalada) {
-                    // Si es ensalada, añade los premium (CORREGIDO)
                     adicionales = adicionales.concat(ADICIONALES_PREMIUM);
                 }
                 
-                // --- Generación del Panel de Opciones ---
-                optionsHtml += `
-                    <div id="options-${itemId}" style="display: none; margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 8px;">
-                `;
+                optionsHtml += `<div id="options-${itemId}" class="options-panel" style="display: none;">`;
 
-                // 1. Opciones de Sándwich (Pan y Tostado)
-                if (isSandwich) {
-                    optionsHtml += `
-                        <div style="margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px dashed #eee;">
-                            <strong>🥖 Opciones de Pan:</strong><br>
-                            <select id="pan-${itemId}" style="padding: 5px; margin-right: 10px; margin-top: 5px;">
-                                <option value="" disabled selected>Elegir Pan</option>
-                                ${SANDWICH_PANS.map(pan => `<option value="${pan}">${pan}</option>`).join('')}
-                            </select>
-                            <label style="margin-top: 5px; display: inline-block;">
-                                <input type="checkbox" id="tostado-${itemId}"> Tostado
-                            </label>
-                        </div>
-                    `;
-                }
-
-                // 2. Opciones de Adicionales
-                optionsHtml += `
-                    <div style="font-size: 13px;">
-                        <strong>Extras:</strong><br>
-                        <div id="adicionales-${itemId}" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
-                            ${adicionales.map((ad, adIndex) => `
-                                <label style="display: flex; align-items: center; white-space: nowrap;">
-                                    <input type="checkbox" name="adicional-${itemId}" value="${ad.name}" data-price="${ad.price}" style="margin-right: 5px;"> ${ad.name}
-                                    <small>(${formatPrice(ad.price)})</small>
-                                </label>
-                            `).join('')}
-                        </div>
-                    </div>
-                    <button class='add-btn' style="width: 100%; margin-top: 15px;" onclick="prepareAndAddToCart('${itemId}', '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${cat.id}')">
-                        Agregar ${item.name} al Carrito
-                    </button>
-                `;
-                optionsHtml += `</div>`; // Cierra div de options
-                
-                // Botón para mostrar opciones (fuera del panel de opciones)
-                optionsButtonHtml = `
-                    <button id="btn-options-${itemId}" class='add-btn' style="background: #5a6268; margin-top: 10px;" onclick="toggleOptions('${itemId}')">
-                        ➕ Agregar Opciones/Adicionales
-                    </button>
-                `;
-            } // Fin de hasOptions
-
-
-            const div = document.createElement('div');
-            div.className = 'item';
-            
-            // Si NO tiene opciones (platos, bebidas), mostramos el botón simple de agregar.
-            const addToCartBtnHtml = hasOptions ? '' : 
-                `<button class='add-btn' onclick="prepareAndAddToCart('${itemId}', '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${cat.id}')">Agregar</button>`;
-
-            // Renderizado final
-            div.innerHTML = `
-                <div class="item-details">
-                    <strong>${item.name}</strong>
-                    ${item.description ? `<div class='description'>${item.description}</div>` : ''}
-                    
-                    ${optionsButtonHtml}
-                    ${optionsHtml}
-                    
-                    ${addToCartBtnHtml}
-                </div>
-                <strong>${formatPrice(item.price)}</strong>
-            `;
-            sec.appendChild(div);
-        });
-        content.appendChild(sec);
-    });
-}
-
-
-// ===============================================
-// 4. INICIALIZACIÓN
-// ===============================================
-
-// Carga de datos
-fetch('products.json')
-    .then(res => {
-        if (!res.ok) throw new Error('No se pudo cargar products.json');
-        return res.json();
-    })
-    .then(json => {
-        data = json;
-        renderMenu(json.categories);
-        renderSections(json.categories);
-    })
-    .catch(error => {
-        console.error("Error al cargar el JSON:", error);
-        document.getElementById('content').innerHTML = "<p style='text-align:center;'>Hubo un error al cargar el menú. Asegúrate que el archivo 'products.json' esté en la misma carpeta.</p>";
-    });
-
-// Inicializar el carrito (para el botón flotante)
-renderCart();
-</script>
-</body>
-</html>
+                //
