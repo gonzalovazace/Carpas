@@ -6,19 +6,19 @@
       "items": [
         { "name": "Adicional", "price": 3000 },
         { "name": "Adicional premium", "price": 4000 },
-        { "name": "Ensa 2019", "price": 14000 },
-        { "name": "Ensa Caesar", "price": 14500 },
-        { "name": "Ensa Capresse", "price": 14500 },
-        { "name": "Ensa Las Palmas", "price": 15000 },
-        { "name": "Ensa Latún", "price": 14500 },
-        { "name": "Ensa Mar del Plata", "price": 14000 },
-        { "name": "Ensa Mossstri", "price": 14500 },
-        { "name": "Ensa PG", "price": 15000 },
-        { "name": "Ensa Santa", "price": 16000 },
-        { "name": "Ensa Teresita", "price": 14500 },
-        { "name": "Ensa Tres Ingredientes", "price": 13500 },
-        { "name": "Ensa Coronada", "price": 14500 },
-        { "name": "Ensa Leo", "price": 15000 }
+        { "name": "Ensalada 2019", "price": 14000 },
+        { "name": "Ensalada Caesar", "price": 14500 },
+        { "name": "Ensalada Capresse", "price": 14500 },
+        { "name": "Ensalada Las Palmas", "price": 15000 },
+        { "name": "Ensalada Latún", "price": 14500 },
+        { "name": "Ensalada Mar del Plata", "price": 14000 },
+        { "name": "Ensalada Paisa", "price": 14500 },
+        { "name": "Ensalada PG", "price": 15000 },
+        { "name": "Ensalada Santa", "price": 16000 },
+        { "name": "Ensalada Teresita", "price": 14500 },
+        { "name": "Ensalada Tres Ingredientes", "price": 13500 },
+        { "name": "Ensalada Coronada", "price": 14500 },
+        { "name": "Ensalada Leo", "price": 15000 }
       ]
     },
     {
@@ -48,8 +48,6 @@
       "id": "sandwiches",
       "name": "Sandwiches",
       "items": [
-        { "name": "Adicional", "price": 3000 },
-        { "name": "Adicional premium", "price": 4000 },
         { "name": "Atún, tomate, queso y mayonesa", "price": 14000 },
         { "name": "Blanco de ave completo", "price": 14500 },
         { "name": "Blanco de ave tomate y lechuga", "price": 13000 },
