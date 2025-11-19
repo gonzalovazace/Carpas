@@ -261,23 +261,30 @@ function showToast(msg){
    --------------------------- */
 function sendToWhatsApp(){
   if (!cart.length){ showToast('El carrito está vacío'); return; }
+
   const bal = document.getElementById('balneario').value;
   const ubi = document.getElementById('ubicacion').value.trim();
+
   if (!bal){ showToast('Por favor seleccioná el balneario'); return; }
   if (!ubi){ showToast('Por favor indicá la carpa/sombrilla'); return; }
 
   const header = encodeURIComponent("🏖️ ¡Hola! Quiero hacer el siguiente pedido:");
   const delivery = encodeURIComponent(`\n📍 Balneario: ${bal}\n🏖️ Ubicación: ${ubi}\n`);
+
   const itemsText = cart.map(it=>{
     let line = `- ${it.name}`;
-    if (it.quantity>1) line += ` x${it.quantity}`;
+    if (it.quantity > 1) line += ` x${it.quantity}`;
     if (it.notes) line += ` (${it.notes})`;
-    line += ` - ${formatPrice(it.price*it.quantity)}`;
+    line += ` - ${formatPrice(it.price * it.quantity)}`;
     return encodeURIComponent(line);
   }).join("%0A");
-  const total = cart.reduce((s,it)=>s + it.price*it.quantity, 0);
+
+  const total = cart.reduce((s,it)=> s + it.price * it.quantity, 0);
   const totalText = encodeURIComponent(`\n💰 Total: ${formatPrice(total)}`);
-  const message = `${header}%0A%0A${itemsText}${totalText}%0A%0A¡Gracias!`;
+
+  // AHORA SÍ — INCLUIMOS DELIVERY
+  const message = `${header}%0A%0A${delivery}%0A${itemsText}%0A${totalText}%0A%0A¡Gracias!`;
+
   const url = `https://wa.me/${WAPP_NUMBER}?text=${message}`;
   window.open(url,'_blank');
 }
