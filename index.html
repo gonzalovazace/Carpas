@@ -135,6 +135,24 @@ function prepareAndAddToCart(itemId, baseName, basePrice, categoryId){
   const isSandwich = SANDWICH_CATEGORIES.includes(categoryId);
   const isEnsalada = ENSALADA_CATEGORIES.includes(categoryId);
   const details = [];
+  // -------- OPCIONES DEFINIDAS EN EL JSON (parte / guarnición) --------
+const itemData = data.categories
+  .find(c => c.id === categoryId)
+  ?.items.find(i => i.name === baseName);
+
+if (itemData && itemData.options) {
+  for (const optKey in itemData.options) {
+    const selectEl = document.getElementById(`${optKey}-${itemId}`);
+
+    if (!selectEl || !selectEl.value) {
+      alert(`Por favor seleccioná: ${optKey}`);
+      return;
+    }
+
+    details.push(`${optKey}: ${selectEl.value}`);
+  }
+}
+
 
   // Sandwich: pan + tostado
   if (isSandwich){
@@ -337,6 +355,24 @@ function renderSections(categories){
       const isEnsalada = ENSALADA_CATEGORIES.includes(cat.id);
       let optionsHtml = '';
       let optionsButtonHtml = '';
+      // -------- OPCIONES DEL JSON (parte / guarnición, etc.) --------
+if (item.options) {
+  optionsHtml += `<div id="options-${itemId}" class="options-panel" style="display:none;">`;
+
+  for (const key in item.options) {
+    const opts = item.options[key];
+
+    optionsHtml += `
+      <div style="margin-bottom:8px;">
+        <strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong><br>
+        <select id="${key}-${itemId}" style="padding:6px;margin-top:6px;width:100%;">
+          <option value="">Elegir ${key}</option>
+          ${opts.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+        </select>
+      </div>`;
+  }
+}
+
 
       if (isSandwich || isEnsalada){
         // adicionales base
@@ -367,7 +403,13 @@ function renderSections(categories){
         // optional notes
         optionsHtml += `<div style="margin-top:8px;"><label style="font-size:13px;">Notas:</label><br><input id="notes-${itemId}" placeholder="Ej: sin cebolla" style="width:100%;padding:8px;margin-top:6px;border:1px solid #ccc;border-radius:6px;"></div>`;
 
-        optionsHtml += `<button class="add-btn" style="width:100%;margin-top:10px;" onclick="prepareAndAddToCart('${itemId}','${item.name.replace(/'/g,"\\'")}', ${item.price}, '${cat.id}')">Agregar ${item.name} al carrito</button>`;
+        optionsHtml += `
+  <button class="add-btn" style="width:100%;margin-top:10px;"
+    onclick="prepareAndAddToCart('${itemId}','${item.name.replace(/'/g,"\\'")}', ${item.price}, '${cat.id}')">
+    Agregar ${item.name} al carrito
+  </button>
+`;
+
         optionsHtml += `</div>`;
 
         optionsButtonHtml = `<button id="btn-options-${itemId}" class="add-btn" style="background:#5a6268;margin-top:8px;" onclick="toggleOptions('${itemId}')">➕ Agregar Opciones/Adicionales</button>`;
