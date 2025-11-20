@@ -69,10 +69,10 @@
           "options": {
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
-        },
-        { "name": "Tortilla", "price": 16000 }
-        { "name"
     },
+    { "name": "Tortilla", "price": 16000 },
+  ]
+},
     {
       "id": "sandwiches",
       "name": "Sandwiches",
