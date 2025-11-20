@@ -463,20 +463,37 @@ for (const key in item.options) {
         }
 
         /* --- OPCIONES SOLO PARA SÁNDWICHES (pan + tostado) --- */
-        if (isSandwich){
-          optionsHtml += `
-            <div style="margin-bottom:8px;">
-              <strong>🥖 Pan:</strong><br>
-              <select id="pan-${itemId}" style="padding:6px;margin-top:6px;">
-                <option value="">Elegir pan</option>
-                ${SANDWICH_PANS.map(p => `<option value="${p}">${p}</option>`).join('')}
-              </select>
-              <label style="margin-left:12px;">
-                <input type="checkbox" id="tostado-${itemId}"> Tostado
-              </label>
-            </div>
-          `;
-        }
+/* --- OPCIONES SOLO PARA SÁNDWICHES --- */
+if (isSandwich) {
+
+  const esTripleDeMiga = item.name.toLowerCase().includes("triple");
+
+  if (esTripleDeMiga) {
+    // SOLO TOSTADO
+    optionsHtml += `
+      <div style="margin-bottom:8px;">
+        <label>
+          <input type="checkbox" id="tostado-${itemId}"> Tostado
+        </label>
+      </div>
+    `;
+  } else {
+    // PAN + TOSTADO COMO SIEMPRE
+    optionsHtml += `
+      <div style="margin-bottom:8px;">
+        <strong>🥖 Pan:</strong><br>
+        <select id="pan-${itemId}" style="padding:6px;margin-top:6px;">
+          <option value="">Elegir pan</option>
+          ${SANDWICH_PANS.map(p => `<option value="${p}">${p}</option>`).join('')}
+        </select>
+        <label style="margin-left:12px;">
+          <input type="checkbox" id="tostado-${itemId}"> Tostado
+        </label>
+      </div>
+    `;
+  }
+}
+
 
         /* --- ADICIONALES SOLO PARA ENSALADAS --- */
         if (isEnsalada){
