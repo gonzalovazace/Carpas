@@ -35,7 +35,29 @@
         { "name": "Cono patitas", "price": 13000 },
         { "name": "Cono Rabas", "price": 21000 },
         { "name": "Langostinos apanados 8/10 piezas", "price": 22000 },
-        { "name": "Menú infantil", "price": 15000 },
+        {
+  "name": "Menú infantil",
+  "price": 15000,
+  "options": {
+    "plato": [
+      "Hamburguesa",
+      "Milanesa",
+      "Suprema",
+      "Patitas de pollo",
+      "Pasta seca"
+    ],
+    "acompañamiento": [
+      "Papas fritas",
+      "Puré"
+    ],
+    "salsa": [
+      "Crema",
+      "Fileto",
+      "Manteca"
+    ]
+  }
+},
+
         {
           "name": "Milanesa de ternera",
           "price": 20000,
@@ -70,7 +92,7 @@
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
         },
-        { "name": "Tortilla", "price": 16000 }
+        { "name": "Tortilla de papas", "price": 16000 }
       ]
     },
     {
