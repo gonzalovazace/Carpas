@@ -357,15 +357,15 @@ function renderSections(categories){
       const isEnsalada = ENSALADA_CATEGORIES.includes(cat.id);
       const hasJsonOptions = item.options && Object.keys(item.options).length > 0;
 
-      let optionsButtonHtml = '';
       let optionsHtml = '';
+      let optionsButtonHtml = '';
 
-      /* ---------------------------------------------
-         ¿TIENE OPCIONES? (JSON / sandwich / ensalada)
-      ----------------------------------------------*/
-      if (hasJsonOptions || isSandwich || isEnsalada) {
-
-        // Botón para abrir/cerrar opciones
+      /* Mostrar botón de opciones si:
+         - Tiene opciones del JSON (parte/guarnición)
+         - O es sandwich
+         - O es ensalada
+      */
+      if (hasJsonOptions || isSandwich || isEnsalada){
         optionsButtonHtml = `
           <button id="btn-options-${itemId}" class="add-btn"
             style="background:#5a6268;margin-top:8px;"
@@ -374,16 +374,17 @@ function renderSections(categories){
           </button>
         `;
 
-        // Contenedor de opciones
-        optionsHtml += `<div id="options-${itemId}" class="options-panel" style="display:none;">`;
+        optionsHtml += `
+          <div id="options-${itemId}" class="options-panel" style="display:none;">
+        `;
 
-        /* ------------ OPCIONES DEL JSON ------------ */
-        if (hasJsonOptions) {
-          for (const key in item.options) {
+        /* --- OPCIONES DEL JSON (parte / guarnición) --- */
+        if (hasJsonOptions){
+          for (const key in item.options){
             const opts = item.options[key];
             optionsHtml += `
               <div style="margin-bottom:8px;">
-                <strong>${key.charAt(0).toUpperCase()+key.slice(1)}:</strong><br>
+                <strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong><br>
                 <select id="${key}-${itemId}" style="padding:6px;margin-top:6px;width:100%;">
                   <option value="">Elegir ${key}</option>
                   ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
@@ -393,8 +394,8 @@ function renderSections(categories){
           }
         }
 
-        /* ------------ OPCIONES SÁNDWICH ------------ */
-        if (isSandwich) {
+        /* --- OPCIONES SOLO PARA SÁNDWICHES (pan + tostado) --- */
+        if (isSandwich){
           optionsHtml += `
             <div style="margin-bottom:8px;">
               <strong>🥖 Pan:</strong><br>
@@ -409,26 +410,27 @@ function renderSections(categories){
           `;
         }
 
-        /* ------------ ADICIONALES ------------ */
-        let adicionales = [...ADICIONALES_COMUNES];
-        if (isEnsalada) adicionales = adicionales.concat(ADICIONALES_PREMIUM);
+        /* --- ADICIONALES SOLO PARA ENSALADAS --- */
+        if (isEnsalada){
+          const adicionales = [...ADICIONALES_COMUNES, ...ADICIONALES_PREMIUM];
 
-        optionsHtml += `
-          <div style="font-size:13px;">
-            <strong>Extras:</strong>
-            <div id="adicionales-${itemId}" 
-                 style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-              ${adicionales.map(ad => `
-                <label class="adicional-label">
-                  <input type="checkbox" data-price="${ad.price}" value="${ad.name}">
-                  ${ad.name} <small>(${formatPrice(ad.price)})</small>
-                </label>
-              `).join('')}
+          optionsHtml += `
+            <div style="font-size:13px;">
+              <strong>Extras:</strong>
+              <div id="adicionales-${itemId}" 
+                   style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+                ${adicionales.map(ad => `
+                  <label class="adicional-label">
+                    <input type="checkbox" data-price="${ad.price}" value="${ad.name}">
+                    ${ad.name} <small>(${formatPrice(ad.price)})</small>
+                  </label>
+                `).join('')}
+              </div>
             </div>
-          </div>
-        `;
+          `;
+        }
 
-        /* ------------ NOTAS ------------ */
+        /* --- NOTAS PARA TODOS LOS PRODUCTOS CON OPCIONES --- */
         optionsHtml += `
           <div style="margin-top:8px;">
             <label style="font-size:13px;">Notas:</label><br>
@@ -437,24 +439,21 @@ function renderSections(categories){
           </div>
         `;
 
-        /* ------------ BOTÓN "AGREGAR" ------------ */
+        /* --- BOTÓN FINAL PARA AGREGAR AL CARRITO --- */
         optionsHtml += `
           <button class="add-btn" style="width:100%;margin-top:10px;"
-            onclick="prepareAndAddToCart('${itemId}',
-              '${item.name.replace(/'/g,"\\'")}',
-              ${item.price},
-              '${cat.id}')">
+            onclick="prepareAndAddToCart('${itemId}','${item.name.replace(/'/g,"\\'")}', ${item.price}, '${cat.id}')">
             Agregar ${item.name} al carrito
           </button>
         `;
 
-        optionsHtml += `</div>`; // Cierra panel
+        optionsHtml += `</div>`;
       }
 
-      // Si NO tiene opciones → botón directo
-      const simpleBtn = (!hasJsonOptions && !isSandwich && !isEnsalada)
-        ? `<button class="add-btn" onclick="addSimpleToCart('${item.name.replace(/'/g,"\\'")}', ${item.price})">Agregar</button>`
-        : '';
+      /* PRODUCTOS SIN OPCIONES → BOTÓN SIMPLE */
+      const simpleBtn = (hasJsonOptions || isSandwich || isEnsalada)
+        ? ''
+        : `<button class="add-btn" onclick="addSimpleToCart('${item.name.replace(/'/g,"\\'")}', ${item.price})">Agregar</button>`;
 
       div.innerHTML = `
         <div class="item-details">
