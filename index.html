@@ -129,6 +129,26 @@ function addSimpleToCart(baseName, basePrice){
   renderCart();
   showToast(`${baseName} agregado al carrito`);
 }
+  function updateMenuInfantil(itemId) {
+  const plato = document.getElementById(`plato-${itemId}`).value;
+  const acom = document.getElementById(`acom-${itemId}`);
+  const salsa = document.getElementById(`salsa-${itemId}`);
+
+  if (!plato) {
+    acom.style.display = "none";
+    salsa.style.display = "none";
+    return;
+  }
+
+  if (plato === "Pasta seca") {
+    acom.style.display = "none";
+    salsa.style.display = "block";
+  } else {
+    salsa.style.display = "none";
+    acom.style.display = "block";
+  }
+}
+
 
 function prepareAndAddToCart(itemId, baseName, basePrice, categoryId){
   let finalPrice = basePrice;
