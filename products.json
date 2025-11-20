@@ -20,27 +20,58 @@
       ]
     },
     {
-      "id": "cocina",
+ "id": "cocina",
       "name": "Cocina",
       "items": [
-        { "name": "1/4 de pollo grille", "price": 20000 },
+        {
+          "name": "1/4 de pollo grille",
+          "price": 20000,
+          "options": {
+            "parte": ["Pechuga", "Pata muslo"],
+            "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
+          }
+        },
         { "name": "Cono papas", "price": 10500 },
         { "name": "Cono patitas", "price": 13000 },
         { "name": "Cono Rabas", "price": 21000 },
         { "name": "Langostinos apanados 8/10 piezas", "price": 22000 },
         { "name": "Menú infantil", "price": 15000 },
-        { "name": "Milanesa de ternera", "price": 20000 },
-        { "name": "Milanesa de ternera napolitana", "price": 22000 },
+        {
+          "name": "Milanesa de ternera",
+          "price": 20000,
+          "options": {
+            "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
+          }
+        },
+        {
+          "name": "Milanesa de ternera napolitana",
+          "price": 22000,
+          "options": {
+            "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
+          }
+        },
         { "name": "Papas fritas bastón", "price": 12000 },
         { "name": "Papas fritas bastón a caballo", "price": 15000 },
         { "name": "Porción de rabas", "price": 27000 },
         { "name": "Porción de arroz", "price": 9000 },
         { "name": "Porción de puré", "price": 9000 },
         { "name": "Revuelto gramajo", "price": 23000 },
-        { "name": "Suprema", "price": 20000 },
-        { "name": "Suprema Napolitana", "price": 22000 },
+        {
+          "name": "Suprema",
+          "price": 20000,
+          "options": {
+            "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
+          }
+        },
+        {
+          "name": "Suprema Napolitana",
+          "price": 22000,
+          "options": {
+            "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
+          }
+        },
         { "name": "Tortilla", "price": 16000 }
-      ]
+        { "name"
     },
     {
       "id": "sandwiches",
