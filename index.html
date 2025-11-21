@@ -431,17 +431,6 @@ function renderSections(categories){
       /* PANEL DE OPCIONES */
       if (hasAnyOptions){
         optionsHtml += `<div id="options-${itemId}" class="options-panel" style="display:none;">`;
-        /* BOTÓN ROJO CERRAR OPCIONES */
-optionsHtml += `
-  <div style="text-align:right; margin-bottom:10px;">
-    <button
-      onclick="document.getElementById('options-${itemId}').style.display='none'"
-      style="background:#dc3545; color:white; border:none; padding:6px 10px; border-radius:6px; font-size:12px; cursor:pointer;">
-      Cerrar opciones
-    </button>
-  </div>
-`;
-
 
         /* OPCIONES DEL JSON */
         if (hasJsonOptions){
