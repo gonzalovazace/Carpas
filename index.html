@@ -149,19 +149,27 @@ function addSimpleToCart(baseName, basePrice){
   }
 }
 
-  function handleAddClick(itemId, index, basePrice, categoryId) {
+function handleAddClick(itemId, index, basePrice, categoryId) {
   const panel = document.getElementById(`options-${itemId}`);
+  const btn = document.querySelector(`#${itemId}-btn`);
 
-  // si el producto tiene opciones → mostrar panel
   if (panel) {
+    // Si el panel está cerrado → abrirlo y cambiar botón
     if (panel.style.display !== 'block') {
       panel.style.display = 'block';
-    } else {
-      // si ya está abierto → agregar al carrito
+      btn.innerText = "Agregar al carrito";
+      btn.style.background = "#28a745"; // verde "confirmar"
+    } 
+    // Si ya está abierto → agregar al carrito
+    else {
       prepareAndAddToCart(itemId, index, basePrice, categoryId);
+
+      // Restauro el botón
+      btn.innerText = "Agregar";
+      btn.style.background = "#17a2b8"; // celeste original
     }
   } else {
-    // si NO tiene opciones → agregar directo
+    // Productos sin opciones → agregar directo
     const cat = data.categories.find(c => c.id === categoryId);
     const item = cat.items[index];
     addSimpleToCart(item.name, item.price);
@@ -604,9 +612,11 @@ if (item.twoIngredients) {
         <div class="item-details">
           <strong>${item.name}</strong>
           ${item.description ? `<div class="description">${item.description}</div>` : ''}
-<button class="add-btn" onclick="handleAddClick('${itemId}', ${index}, ${item.price}, '${cat.id}')">
+<button id="${itemId}-btn" class="add-btn"
+  onclick="handleAddClick('${itemId}', ${index}, ${item.price}, '${cat.id}')">
   Agregar
 </button>
+
 ${optionsHtml}
 
         </div>
