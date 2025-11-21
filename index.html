@@ -191,7 +191,6 @@ function prepareAndAddToCart(itemId, index, basePrice, categoryId){
   let finalPrice = basePrice;
   const isSandwich = SANDWICH_CATEGORIES.includes(categoryId);
   const isEnsalada = ENSALADA_CATEGORIES.includes(categoryId);
-  const noPan = NO_PAN_ITEMS.includes(item.name.toLowerCase());
 
   const details = [];
 
@@ -248,7 +247,6 @@ if (isSandwich){
   }
 }
 
-  }
 
   // --- Adicionales ---
   const adics = Array.from(document.querySelectorAll(`#adicionales-${itemId} input[type="checkbox"]:checked`));
