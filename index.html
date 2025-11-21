@@ -428,15 +428,15 @@ function renderSections(categories){
 
       let optionsHtml = '';
 
-      /* -------------------------------------
-         PANEL DE OPCIONES (solo si aplica)
-      --------------------------------------*/
+      /* PANEL DE OPCIONES */
       if (hasAnyOptions){
         optionsHtml += `<div id="options-${itemId}" class="options-panel" style="display:none;">`;
 
-        /* --- OPCIONES DEL JSON (parte / guarnición / menú infantil) --- */
+        /* OPCIONES DEL JSON */
         if (hasJsonOptions){
           for (const key in item.options){
+            const labelKey = key.charAt(0).toUpperCase() + key.slice(1);
+
             const opts = item.options[key];
 
             if (item.name === "Menú infantil"){
@@ -450,8 +450,7 @@ function renderSections(categories){
                       <option value="">Elegir plato</option>
                       ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
                     </select>
-                  </div>
-                `;
+                  </div>`;
               }
 
               if (key === "acompañamiento"){
@@ -462,8 +461,7 @@ function renderSections(categories){
                       <option value="">Elegir acompañamiento</option>
                       ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
                     </select>
-                  </div>
-                `;
+                  </div>`;
               }
 
               if (key === "salsa"){
@@ -474,25 +472,23 @@ function renderSections(categories){
                       <option value="">Elegir salsa</option>
                       ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
                     </select>
-                  </div>
-                `;
+                  </div>`;
               }
 
             } else {
               optionsHtml += `
                 <div style="margin-bottom:8px;">
-                  <strong>${key}:</strong><br>
+                  <strong>${labelKey}:</strong><br>
                   <select id="${key}-${itemId}" style="padding:6px;margin-top:6px;width:100%;">
                     <option value="">Elegir ${key}</option>
                     ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
                   </select>
-                </div>
-              `;
+                </div>`;
             }
           }
         }
 
-        /* --- SANDWICHES: Pan / tostado / 2 ingredientes --- */
+        /* SANDWICHES */
         if (isSandwich){
 
           if (item.twoIngredients){
@@ -510,8 +506,7 @@ function renderSections(categories){
                     </label>
                   `).join('')}
                 </div>
-              </div>
-            `;
+              </div>`;
           }
 
           const esTriple = item.name.toLowerCase().includes("triple");
@@ -520,12 +515,11 @@ function renderSections(categories){
             optionsHtml += `
               <div style="margin-bottom:8px;">
                 <label><input type="checkbox" id="tostado-${itemId}"> Tostado</label>
-              </div>
-            `;
+              </div>`;
           } else {
             optionsHtml += `
               <div style="margin-bottom:8px;">
-                <strong>🥖 Pan:</strong><br>
+                <strong>Pan:</strong><br>
                 <select id="pan-${itemId}" style="padding:6px;margin-top:6px;">
                   <option value="">Elegir pan</option>
                   ${SANDWICH_PANS.map(p => `<option value="${p}">${p}</option>`).join('')}
@@ -533,12 +527,11 @@ function renderSections(categories){
                 <label style="margin-left:12px;">
                   <input type="checkbox" id="tostado-${itemId}"> Tostado
                 </label>
-              </div>
-            `;
+              </div>`;
           }
         }
 
-        /* --- ENSALADAS: adicionales --- */
+        /* ENSALADAS */
         if (isEnsalada){
           const extra = [...ADICIONALES_COMUNES, ...ADICIONALES_PREMIUM];
 
@@ -554,11 +547,10 @@ function renderSections(categories){
                   </label>
                 `).join('')}
               </div>
-            </div>
-          `;
+            </div>`;
         }
 
-        /* --- NOTAS --- */
+        /* NOTAS */
         optionsHtml += `
           <div style="margin-top:8px;">
             <label style="font-size:13px;">Notas:</label><br>
@@ -567,7 +559,7 @@ function renderSections(categories){
           </div>
         `;
 
-        /* --- BOTÓN FINAL AGREGAR --- */
+        /* BOTÓN FINAL AGREGAR */
         optionsHtml += `
           <button class="add-btn"
             style="width:100%;margin-top:10px;background:#17a2b8;"
@@ -579,9 +571,7 @@ function renderSections(categories){
         optionsHtml += `</div>`;
       }
 
-      /* ----------------------------------------------
-         BOTÓN ÚNICO DE AGREGAR (SIEMPRE EL MISMO)
-      ----------------------------------------------*/
+      /* BOTÓN PRINCIPAL */
       const mainAddButton = `
         <button class="add-btn" style="margin-top:10px;width:100%;"
           onclick="${hasAnyOptions
@@ -592,7 +582,6 @@ function renderSections(categories){
         </button>
       `;
 
-      /* RENDER DEL ITEM */
       div.innerHTML = `
         <div class="item-details">
           <strong>${item.name}</strong>
