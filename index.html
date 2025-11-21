@@ -151,6 +151,16 @@ function addSimpleToCart(baseName, basePrice){
 
 
 function prepareAndAddToCart(itemId, baseName, basePrice, categoryId){
+  // validar opción 2 ingredientes
+const twoIngOptions = document.querySelectorAll(`input[name="twoIng-${itemId}"]:checked`);
+if (itemHasTwoIng && twoIngOptions.length !== 2) {
+  alert("Debe elegir exactamente 2 ingredientes.");
+  return;
+}
+if (itemHasTwoIng) {
+  selectedOptions.push("Ingredientes: " + Array.from(twoIngOptions).map(x => x.value).join(", "));
+}
+
   let finalPrice = basePrice;
   const isSandwich = SANDWICH_CATEGORIES.includes(categoryId);
   const isEnsalada = ENSALADA_CATEGORIES.includes(categoryId);
@@ -176,6 +186,7 @@ if (itemData && itemData.options) {
 
   // Sandwich: pan + tostado
   if (isSandwich){
+    
     const panSelect = document.getElementById(`pan-${itemId}`);
     const tostadoCheck = document.getElementById(`tostado-${itemId}`);
     if (!panSelect || panSelect.value === ''){
@@ -465,6 +476,26 @@ for (const key in item.options) {
         /* --- OPCIONES SOLO PARA SÁNDWICHES (pan + tostado) --- */
 /* --- OPCIONES SOLO PARA SÁNDWICHES --- */
 if (isSandwich) {
+  // --- OPCIÓN: Elegir 2 ingredientes ---
+if (item.twoIngredients) {
+  const INGREDIENTES_DOBLES = ["Jamón", "Queso", "Huevo", "Tomate", "Lechuga"];
+
+  optionsHtml += `
+    <div style="margin-bottom:8px;">
+      <strong>Elegir 2 ingredientes:</strong>
+      <div id="twoIng-${itemId}" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+        ${INGREDIENTES_DOBLES.map(ing => `
+          <label class="adicional-label">
+            <input type="checkbox" name="twoIng-${itemId}" value="${ing}">
+            ${ing}
+          </label>
+        `).join('')}
+      </div>
+      <small style="color:#555;">(Debe elegir exactamente 2)</small>
+    </div>
+  `;
+}
+
 
   const esTripleDeMiga = item.name.toLowerCase().includes("triple");
 
