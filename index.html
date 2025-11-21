@@ -107,6 +107,8 @@ const ADICIONALES_PREMIUM = [
 const SANDWICH_PANS = ["Árabe","Pebete","Francés"];
 const SANDWICH_CATEGORIES = ['sandwiches', 'sandwiches-frios','sandwiches-calientes','vegetarianos'];
 const ENSALADA_CATEGORIES = ['ensaladas'];
+  const NO_PAN_ITEMS = ["hamburguesa", "hamburguesa 2 ingredientes"];
+
 
 /* ---------------------------
    Utilidades
@@ -189,6 +191,8 @@ function prepareAndAddToCart(itemId, index, basePrice, categoryId){
   let finalPrice = basePrice;
   const isSandwich = SANDWICH_CATEGORIES.includes(categoryId);
   const isEnsalada = ENSALADA_CATEGORIES.includes(categoryId);
+  const noPan = NO_PAN_ITEMS.includes(item.name.toLowerCase());
+
   const details = [];
 
   // --- Validar 2 ingredientes ---
@@ -213,26 +217,37 @@ function prepareAndAddToCart(itemId, index, basePrice, categoryId){
     }
   }
 
-  // --- Sandwiches ---
-  if (isSandwich){
-    
-    const esTriple = baseName.toLowerCase().includes("triple");
+// --- Sandwiches ---
+if (isSandwich){
 
-    if (esTriple){
-      const tostado = document.getElementById(`tostado-${itemId}`);
-      if (tostado.checked) details.push("Tostado");
-    } else {
-      const pan = document.getElementById(`pan-${itemId}`);
-      const tostado = document.getElementById(`tostado-${itemId}`);
+  const noPan = NO_PAN_ITEMS.includes(baseName.toLowerCase());
+  const esTriple = baseName.toLowerCase().includes("triple");
 
-      if (!pan || !pan.value){
-        alert("Por favor seleccioná el tipo de pan.");
-        return;
-      }
+  // 🟩 Caso donde NO debe pedir pan (hamburguesas)
+  if (noPan){
+    const tostado = document.getElementById(`tostado-${itemId}`);
+    if (tostado && tostado.checked) details.push("Tostado");
+  
+  // 🟦 Caso de sandwich triple: sólo tostado
+  } else if (esTriple){
+    const tostado = document.getElementById(`tostado-${itemId}`);
+    if (tostado.checked) details.push("Tostado");
 
-      details.push(`Pan: ${pan.value}`);
-      if (tostado.checked) details.push("Tostado");
+  // 🟥 Caso normal: pan + tostado
+  } else {
+    const pan = document.getElementById(`pan-${itemId}`);
+    const tostado = document.getElementById(`tostado-${itemId}`);
+
+    if (!pan || !pan.value){
+      alert("Por favor seleccioná el tipo de pan.");
+      return;
     }
+
+    details.push(`Pan: ${pan.value}`);
+    if (tostado.checked) details.push("Tostado");
+  }
+}
+
   }
 
   // --- Adicionales ---
