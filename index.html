@@ -561,13 +561,12 @@ function renderSections(categories){
 
 /* --- BOTÓN FINAL AGREGAR --- */
 optionsHtml += `
-  <button class="add-btn" 
+  <button class="add-btn"
     style="width:100%;margin-top:10px;background:#17a2b8;"
-    onclick="prepareAndAddToCart('${itemId}','${item.name.replace(/'/g,"\\'")}',${item.price},'${cat.id}')">
+    onclick="prepareAndAddToCart('${itemId}', ${index}, ${item.price}, '${cat.id}')">
     Agregar
   </button>
 `;
-
 
         optionsHtml += `</div>`;
       }
