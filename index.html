@@ -151,53 +151,82 @@ function addSimpleToCart(baseName, basePrice){
 
 
 function prepareAndAddToCart(itemId, baseName, basePrice, categoryId){
-  // validar opción 2 ingredientes
-const twoIngOptions = document.querySelectorAll(`input[name="twoIng-${itemId}"]:checked`);
-if (itemHasTwoIng && twoIngOptions.length !== 2) {
-  alert("Debe elegir exactamente 2 ingredientes.");
-  return;
-}
-if (itemHasTwoIng) {
-  selectedOptions.push("Ingredientes: " + Array.from(twoIngOptions).map(x => x.value).join(", "));
-}
+  
+  const itemData = data.categories
+    .find(c => c.id === categoryId)
+    ?.items.find(i => i.name === baseName);
+
+  const itemHasTwoIng = itemData && itemData.twoIngredients;
 
   let finalPrice = basePrice;
   const isSandwich = SANDWICH_CATEGORIES.includes(categoryId);
   const isEnsalada = ENSALADA_CATEGORIES.includes(categoryId);
   const details = [];
-  // -------- OPCIONES DEFINIDAS EN EL JSON (parte / guarnición) --------
-const itemData = data.categories
-  .find(c => c.id === categoryId)
-  ?.items.find(i => i.name === baseName);
 
-if (itemData && itemData.options) {
-  for (const optKey in itemData.options) {
-    const selectEl = document.getElementById(`${optKey}-${itemId}`);
+  /* -------------------------------------------
+     VALIDAR "ELEGIR 2 INGREDIENTES" (si aplica)
+  ---------------------------------------------*/
+  if (itemHasTwoIng) {
+    const twoIngOptions = document.querySelectorAll(`input[name="twoIng-${itemId}"]:checked`);
 
-    if (!selectEl || !selectEl.value) {
-      alert(`Por favor seleccioná: ${optKey}`);
+    if (twoIngOptions.length !== 2) {
+      alert("Debe elegir exactamente 2 ingredientes.");
       return;
     }
 
-    details.push(`${optKey}: ${selectEl.value}`);
+    details.push(
+      "Ingredientes: " + 
+      Array.from(twoIngOptions).map(x => x.value).join(", ")
+    );
   }
-}
 
+  /* ---------------------------
+     OPCIONES EN JSON (guarnición, parte, etc.)
+  --------------------------- */
+  if (itemData && itemData.options) {
+    for (const optKey in itemData.options) {
+      const selectEl = document.getElementById(`${optKey}-${itemId}`);
 
-  // Sandwich: pan + tostado
+      if (!selectEl || !selectEl.value) {
+        alert(`Por favor seleccioná: ${optKey}`);
+        return;
+      }
+
+      details.push(`${optKey}: ${selectEl.value}`);
+    }
+  }
+
+  /* ---------------------------
+     SANDWICHES: pan + tostado
+  --------------------------- */
   if (isSandwich){
     
-    const panSelect = document.getElementById(`pan-${itemId}`);
-    const tostadoCheck = document.getElementById(`tostado-${itemId}`);
-    if (!panSelect || panSelect.value === ''){
-      alert('Por favor seleccioná el tipo de pan.');
-      return;
+    const esTripleDeMiga = baseName.toLowerCase().includes("triple");
+
+    if (esTripleDeMiga) {
+      // solo tostado
+      const tostadoCheck = document.getElementById(`tostado-${itemId}`);
+      if (tostadoCheck && tostadoCheck.checked) {
+        details.push("Tostado");
+      }
+    } else {
+      // pan + tostado normal
+      const panSelect = document.getElementById(`pan-${itemId}`);
+      const tostadoCheck = document.getElementById(`tostado-${itemId}`);
+
+      if (!panSelect || panSelect.value === '') {
+        alert('Por favor seleccioná el tipo de pan.');
+        return;
+      }
+
+      details.push(`Pan: ${panSelect.value}`);
+      if (tostadoCheck && tostadoCheck.checked) details.push('Tostado');
     }
-    details.push(`Pan: ${panSelect.value}`);
-    if (tostadoCheck && tostadoCheck.checked) details.push('Tostado');
   }
 
-  // Adicionales (checkboxes)
+  /* ---------------------------
+     ADICIONALES
+  --------------------------- */
   const checkedAd = Array.from(document.querySelectorAll(`#adicionales-${itemId} input[type="checkbox"]:checked`));
   if (checkedAd.length){
     const adNames = [];
@@ -208,7 +237,9 @@ if (itemData && itemData.options) {
     details.push(`+ ${adNames.join(', ')}`);
   }
 
-  // Notas (si existe)
+  /* ---------------------------
+     NOTAS
+  --------------------------- */
   const notesEl = document.getElementById(`notes-${itemId}`);
   const notes = notesEl ? notesEl.value.trim() : '';
 
@@ -219,6 +250,7 @@ if (itemData && itemData.options) {
   renderCart();
   showToast(`${baseName} agregado al carrito`);
 }
+
 
 function resetItemOptions(itemId){
   const pan = document.getElementById(`pan-${itemId}`);
