@@ -420,12 +420,12 @@ function renderSections(categories){
       const itemId = `${cat.id}-${index}`;
       const div = document.createElement('div');
       div.className = 'item';
-
+      
+      const isPancho = item.name.toLowerCase().includes("pancho");
       const isSandwich = SANDWICH_CATEGORIES.includes(cat.id);
       const isEnsalada = ENSALADA_CATEGORIES.includes(cat.id);
       const hasJsonOptions = item.options && Object.keys(item.options).length > 0;
 const hasAnyOptions = (!isPancho) && (hasJsonOptions || isSandwich || isEnsalada);
-      const isPancho = item.name.toLowerCase().includes("pancho");
 
 
       let optionsHtml = '';
