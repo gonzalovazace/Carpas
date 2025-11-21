@@ -612,10 +612,11 @@ if (item.twoIngredients) {
         <div class="item-details">
           <strong>${item.name}</strong>
           ${item.description ? `<div class="description">${item.description}</div>` : ''}
-<button id="${itemId}-btn" class="add-btn"
-  onclick="handleAddClick('${itemId}', ${index}, ${item.price}, '${cat.id}')">
+<button class="add-btn" style="width:100%;margin-top:10px;"
+  onclick="prepareAndAddToCart('${itemId}','${item.name.replace(/'/g,"\\'")}', ${item.price}, '${cat.id}')">
   Agregar
 </button>
+
 
 ${optionsHtml}
 
