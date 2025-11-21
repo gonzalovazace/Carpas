@@ -563,7 +563,8 @@ function renderSections(categories){
         optionsHtml += `
           <button class="add-btn"
             style="width:100%;margin-top:10px;background:#17a2b8;"
-            onclick="prepareAndAddToCart('${itemId}','${item.name.replace(/'/g, "\\'")}',${item.price},'${cat.id}')">
+            onclick="prepareAndAddToCart('${itemId}', ${index}, ${item.price}, '${cat.id}')"
+
             Agregar
           </button>
         `;
@@ -572,8 +573,10 @@ function renderSections(categories){
       }
 
       /* BOTÓN PRINCIPAL */
-      const mainAddButton = `
-        <button class="add-btn" style="margin-top:10px;width:100%;"
+const mainAddButton = `
+  <button id="btn-options-${itemId}" class="add-btn"
+          style="margin-top:10px;width:100%;"
+
           onclick="${hasAnyOptions
             ? `toggleOptions('${itemId}')`
             : `addSimpleToCart('${item.name.replace(/'/g,"\\'")}', ${item.price})`
