@@ -149,6 +149,25 @@ function addSimpleToCart(baseName, basePrice){
   }
 }
 
+  function handleAddClick(itemId, index, basePrice, categoryId) {
+  const panel = document.getElementById(`options-${itemId}`);
+
+  // si el producto tiene opciones → mostrar panel
+  if (panel) {
+    if (panel.style.display !== 'block') {
+      panel.style.display = 'block';
+    } else {
+      // si ya está abierto → agregar al carrito
+      prepareAndAddToCart(itemId, index, basePrice, categoryId);
+    }
+  } else {
+    // si NO tiene opciones → agregar directo
+    const cat = data.categories.find(c => c.id === categoryId);
+    const item = cat.items[index];
+    addSimpleToCart(item.name, item.price);
+  }
+}
+
 
 function prepareAndAddToCart(itemId, index, basePrice, categoryId){
 
@@ -585,9 +604,11 @@ if (item.twoIngredients) {
         <div class="item-details">
           <strong>${item.name}</strong>
           ${item.description ? `<div class="description">${item.description}</div>` : ''}
-          ${optionsButtonHtml}
-          ${optionsHtml}
-          ${simpleBtn}
+<button class="add-btn" onclick="handleAddClick('${itemId}', ${index}, ${item.price}, '${cat.id}')">
+  Agregar
+</button>
+${optionsHtml}
+
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
           <strong class="price">${formatPrice(item.price)}</strong>
