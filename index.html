@@ -169,7 +169,7 @@ function handleAddClick(itemId, index, basePrice, categoryId) {
       btn.style.background = "#17a2b8"; // celeste original
     }
   } else {
-    // Productos sin opciones → agregar directo
+    //  → agregar directo
     const cat = data.categories.find(c => c.id === categoryId);
     const item = cat.items[index];
     addSimpleToCart(item.name, item.price);
@@ -561,11 +561,9 @@ function renderSections(categories){
 
 /* --- BOTÓN FINAL AGREGAR --- */
 optionsHtml += `
-  <button class="add-btn"
+  <button class="add-btn" 
     style="width:100%;margin-top:10px;background:#17a2b8;"
-onclick="prepareAndAddToCart('${itemId}', '${item.name.replace(/'/g,"\\'")}', ${item.price}, '${cat.id}')">
-
-
+    onclick="prepareAndAddToCart('${itemId}','${item.name.replace(/'/g,"\\'")}',${item.price},'${cat.id}')">
     Agregar
   </button>
 `;
