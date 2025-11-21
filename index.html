@@ -428,9 +428,11 @@ function renderSections(categories){
       let optionsHtml = '';
       let optionsButtonHtml = '';
 
-      // --------------------------
-      // SI TIENE OPCIONES → BOTÓN
-      // --------------------------
+      /* Mostrar botón de opciones si:
+         - Tiene opciones del JSON
+         - O es sandwich
+         - O es ensalada
+      */
       if (hasJsonOptions || isSandwich || isEnsalada){
         optionsButtonHtml = `
           <button id="btn-options-${itemId}" class="add-btn"
@@ -444,15 +446,13 @@ function renderSections(categories){
           <div id="options-${itemId}" class="options-panel" style="display:none;">
         `;
 
-        // --------------------------
-        // OPCIONES DEL JSON
-        // --------------------------
+        /* --- OPCIONES DEL JSON (parte / guarnición / menú infantil) --- */
         if (hasJsonOptions){
           for (const key in item.options) {
             const opts = item.options[key];
 
             if (item.name === "Menú infantil") {
-              
+
               if (key === "plato") {
                 optionsHtml += `
                   <div style="margin-bottom:8px;">
@@ -491,9 +491,10 @@ function renderSections(categories){
               }
 
             } else {
+              // productos normales
               optionsHtml += `
                 <div style="margin-bottom:8px;">
-                  <strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong><br>
+                  <strong>${key}:</strong><br>
                   <select id="${key}-${itemId}" style="padding:6px;margin-top:6px;width:100%;">
                     <option value="">Elegir ${key}</option>
                     ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
@@ -504,12 +505,9 @@ function renderSections(categories){
           }
         }
 
-        // --------------------------
-        // OPCIONES SÁNDWICHES
-        // --------------------------
+        /* --- OPCIONES PARA SÁNDWICHES --- */
         if (isSandwich){
-
-          if (item.twoIngredients) {
+          if (item.twoIngredients){
             const ING = ["Jamón","Queso","Huevo","Tomate","Lechuga"];
 
             optionsHtml += `
@@ -553,9 +551,7 @@ function renderSections(categories){
           }
         }
 
-        // --------------------------
-        // EXTRAS PARA ENSALADAS
-        // --------------------------
+        /* --- ADICIONALES SOLO PARA ENSALADAS --- */
         if (isEnsalada){
           const adicionales = [...ADICIONALES_COMUNES, ...ADICIONALES_PREMIUM];
 
@@ -575,9 +571,7 @@ function renderSections(categories){
           `;
         }
 
-        // --------------------------
-        // NOTAS
-        // --------------------------
+        /* --- NOTAS --- */
         optionsHtml += `
           <div style="margin-top:8px;">
             <label style="font-size:13px;">Notas:</label><br>
@@ -586,12 +580,9 @@ function renderSections(categories){
           </div>
         `;
 
-        // --------------------------
-        // BOTÓN AGREGAR
-        // --------------------------
+        /* --- BOTÓN FINAL (solo cambio de texto) --- */
         optionsHtml += `
-          <button class="add-btn"
-            style="width:100%;margin-top:10px;background:#17a2b8;"
+          <button class="add-btn" style="width:100%;margin-top:10px;background:#17a2b8;"
             onclick="prepareAndAddToCart('${itemId}','${item.name.replace(/'/g,"\\'")}', ${item.price}, '${cat.id}')">
             Agregar
           </button>
@@ -600,18 +591,19 @@ function renderSections(categories){
         optionsHtml += `</div>`;
       }
 
-      // --------------------------
-      // RENDER FINAL DEL PRODUCTO
-      // --------------------------
+      /* PRODUCTOS SIN OPCIONES */
+      const simpleBtn = (hasJsonOptions || isSandwich || isEnsalada)
+        ? ''
+        : `<button class="add-btn" onclick="addSimpleToCart('${item.name.replace(/'/g,"\\'")}', ${item.price})">Agregar</button>`;
+
       div.innerHTML = `
         <div class="item-details">
           <strong>${item.name}</strong>
           ${item.description ? `<div class="description">${item.description}</div>` : ''}
-
           ${optionsButtonHtml}
           ${optionsHtml}
+          ${simpleBtn}
         </div>
-
         <div style="display:flex;align-items:center;gap:8px;">
           <strong class="price">${formatPrice(item.price)}</strong>
         </div>
