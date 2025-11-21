@@ -150,102 +150,80 @@ function addSimpleToCart(baseName, basePrice){
 }
 
 
-function prepareAndAddToCart(itemId, baseName, basePrice, categoryId){
-  
+function prepareAndAddToCart(itemId, index, basePrice, categoryId){
+
   const itemData = data.categories
     .find(c => c.id === categoryId)
-    ?.items.find(i => i.name === baseName);
+    ?.items[index];
 
-  const itemHasTwoIng = itemData && itemData.twoIngredients;
+  const baseName = itemData.name;
+  const itemHasTwoIng = itemData.twoIngredients;
 
   let finalPrice = basePrice;
   const isSandwich = SANDWICH_CATEGORIES.includes(categoryId);
   const isEnsalada = ENSALADA_CATEGORIES.includes(categoryId);
   const details = [];
 
-  /* -------------------------------------------
-     VALIDAR "ELEGIR 2 INGREDIENTES" (si aplica)
-  ---------------------------------------------*/
+  // --- Validar 2 ingredientes ---
   if (itemHasTwoIng) {
-    const twoIngOptions = document.querySelectorAll(`input[name="twoIng-${itemId}"]:checked`);
-
-    if (twoIngOptions.length !== 2) {
+    const selected = document.querySelectorAll(`input[name="twoIng-${itemId}"]:checked`);
+    if (selected.length !== 2) {
       alert("Debe elegir exactamente 2 ingredientes.");
       return;
     }
-
-    details.push(
-      "Ingredientes: " + 
-      Array.from(twoIngOptions).map(x => x.value).join(", ")
-    );
+    details.push("Ingredientes: " + Array.from(selected).map(s => s.value).join(", "));
   }
 
-  /* ---------------------------
-     OPCIONES EN JSON (guarnición, parte, etc.)
-  --------------------------- */
-  if (itemData && itemData.options) {
+  // --- Opciones del JSON ---
+  if (itemData.options) {
     for (const optKey in itemData.options) {
-      const selectEl = document.getElementById(`${optKey}-${itemId}`);
-
-      if (!selectEl || !selectEl.value) {
+      const sel = document.getElementById(`${optKey}-${itemId}`);
+      if (!sel || !sel.value) {
         alert(`Por favor seleccioná: ${optKey}`);
         return;
       }
-
-      details.push(`${optKey}: ${selectEl.value}`);
+      details.push(`${optKey}: ${sel.value}`);
     }
   }
 
-  /* ---------------------------
-     SANDWICHES: pan + tostado
-  --------------------------- */
+  // --- Sandwiches ---
   if (isSandwich){
     
-    const esTripleDeMiga = baseName.toLowerCase().includes("triple");
+    const esTriple = baseName.toLowerCase().includes("triple");
 
-    if (esTripleDeMiga) {
-      // solo tostado
-      const tostadoCheck = document.getElementById(`tostado-${itemId}`);
-      if (tostadoCheck && tostadoCheck.checked) {
-        details.push("Tostado");
-      }
+    if (esTriple){
+      const tostado = document.getElementById(`tostado-${itemId}`);
+      if (tostado.checked) details.push("Tostado");
     } else {
-      // pan + tostado normal
-      const panSelect = document.getElementById(`pan-${itemId}`);
-      const tostadoCheck = document.getElementById(`tostado-${itemId}`);
+      const pan = document.getElementById(`pan-${itemId}`);
+      const tostado = document.getElementById(`tostado-${itemId}`);
 
-      if (!panSelect || panSelect.value === '') {
-        alert('Por favor seleccioná el tipo de pan.');
+      if (!pan || !pan.value){
+        alert("Por favor seleccioná el tipo de pan.");
         return;
       }
 
-      details.push(`Pan: ${panSelect.value}`);
-      if (tostadoCheck && tostadoCheck.checked) details.push('Tostado');
+      details.push(`Pan: ${pan.value}`);
+      if (tostado.checked) details.push("Tostado");
     }
   }
 
-  /* ---------------------------
-     ADICIONALES
-  --------------------------- */
-  const checkedAd = Array.from(document.querySelectorAll(`#adicionales-${itemId} input[type="checkbox"]:checked`));
-  if (checkedAd.length){
-    const adNames = [];
-    checkedAd.forEach(ch => {
-      adNames.push(ch.value);
-      finalPrice += parseInt(ch.getAttribute('data-price')) || 0;
-    });
-    details.push(`+ ${adNames.join(', ')}`);
+  // --- Adicionales ---
+  const adics = Array.from(document.querySelectorAll(`#adicionales-${itemId} input[type="checkbox"]:checked`));
+  if (adics.length){
+    details.push("+ " + adics.map(a => a.value).join(", "));
+    adics.forEach(a => finalPrice += parseInt(a.dataset.price));
   }
 
-  /* ---------------------------
-     NOTAS
-  --------------------------- */
-  const notesEl = document.getElementById(`notes-${itemId}`);
-  const notes = notesEl ? notesEl.value.trim() : '';
+  // --- Notas ---
+  const notes = document.getElementById(`notes-${itemId}`)?.value.trim() || "";
 
-  const nameWithDetails = details.length ? `${baseName} [${details.join(' / ')}]` : baseName;
+  const nameWithDetails = details.length 
+    ? `${baseName} [${details.join(" / ")}]`
+    : baseName;
 
-  cart.push({ name: nameWithDetails, baseName, price: finalPrice, quantity: 1, notes });
+  cart.push({ name: nameWithDetails, price: finalPrice, quantity: 1, notes });
+
   resetItemOptions(itemId);
   renderCart();
   showToast(`${baseName} agregado al carrito`);
@@ -590,7 +568,7 @@ if (item.twoIngredients) {
         /* --- BOTÓN FINAL PARA AGREGAR AL CARRITO --- */
         optionsHtml += `
           <button class="add-btn" style="width:100%;margin-top:10px;"
-            onclick="prepareAndAddToCart('${itemId}','${item.name.replace(/'/g,"\\'")}', ${item.price}, '${cat.id}')">
+            onclick="prepareAndAddToCart('${itemId}', ${index}, ${item.price}, '${cat.id}')"
             Agregar ${item.name} al carrito
           </button>
         `;
