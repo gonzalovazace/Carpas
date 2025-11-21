@@ -586,20 +586,26 @@ const mainAddButton = `
         </button>
       `;
 
+      const isPancho = item.name.toLowerCase().includes("pancho");
+
       div.innerHTML = `
         <div class="item-details">
           <strong>${item.name}</strong>
           ${item.description ? `<div class="description">${item.description}</div>` : ''}
 ${mainAddButton}
 
-${ isPancho ? `
-    <div style="margin-top:8px;">
-      <label style="font-size:13px;">Notas:</label><br>
-      <input id="notes-${itemId}" placeholder="Ej: sin condimentos"
-        style="width:100%;padding:8px;margin-top:6px;border:1px solid #ccc;border-radius:6px;">
-    </div>
-  ` : optionsHtml
+${
+  isPancho
+    ? `
+      <div style="margin-top:8px;">
+        <label style="font-size:13px;">Notas:</label><br>
+        <input id="notes-${itemId}" placeholder="Ej: sin condimentos"
+          style="width:100%;padding:8px;margin-top:6px;border:1px solid #ccc;border-radius:6px;">
+      </div>
+    `
+    : optionsHtml
 }
+
 
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
