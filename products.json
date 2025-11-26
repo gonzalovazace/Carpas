@@ -142,24 +142,100 @@
 
       ]
     },
+{
+  "id": "bebidas-sin-alcohol",
+  "name": "Bebidas sin alcohol",
+  "items": [
+    { "name": "Agua sin gas chica", "price": 3000 },
+    { "name": "Agua con gas chica", "price": 3000 },
+
     {
-      "id": "bebidas-sin-alcohol",
-      "name": "Bebidas sin alcohol",
-      "items": [
-        { "name": "Agua con o sin gas chica", "price": 3000 },
-        { "name": "Agua sin gas grande", "price": 4000 },
-        { "name": "Gaseosa chica", "price": 3000 },
-        { "name": "Gaseosa grande", "price": 3000 },
-        { "name": "Jarra limonada grande", "price": 8000 },
-        { "name": "Jugo exprimido 480cc", "price": 5500 },
-        { "name": "Lata de gaseosa", "price": 2500 },
-        { "name": "Levite chica", "price": 3000 },
-        { "name": "Levite grande", "price": 4000 },
-        { "name": "Licuado chico", "price": 5500 },
-        { "name": "Licuado grande", "price": 6500 },
-        { "name": "Vaso de limonada chico", "price": 5000 },
-        { "name": "Vaso de limonada grande", "price": 6500 }
+      "name": "Gaseosa chica",
+      "price": 3000,
+      "options": [
+        "Pepsi",
+        "Pepsi Black",
+        "Pepsi Twist",
+        "7up",
+        "7up Free",
+        "Paso de los Toros Tónica",
+        "Paso de los Toros Pomelo",
+        "Mirinda"
       ]
+    },
+    {
+      "name": "Lata de gaseosa",
+      "price": 2500,
+      "options": [
+        "Pepsi",
+        "Pepsi Black",
+        "Pepsi Twist",
+        "7up",
+        "7up Free",
+        "Paso de los Toros Tónica",
+        "Paso de los Toros Pomelo",
+        "Mirinda"
+      ]
+    },
+    {
+      "name": "Gaseosa grande",
+      "price": 4000,
+      "options": [
+        "Pepsi",
+        "Pepsi Black",
+        "Pepsi Twist",
+        "7up",
+        "7up Free",
+        "Paso de los Toros Tónica",
+        "Paso de los Toros Pomelo",
+        "Mirinda"
+      ]
+    },
+
+    { "name": "Jarra limonada grande", "price": 8000 },
+    { "name": "Jugo exprimido 480cc", "price": 5500 },
+
+    {
+      "name": "Levite chica",
+      "price": 3000,
+      "options": [
+        "Manzana",
+        "Manzana Cero",
+        "Pomelo",
+        "Pomelo Cero",
+        "Naranja",
+        "Naranja Cero",
+        "Pera"
+      ]
+    },
+    {
+      "name": "Levite grande",
+      "price": 4000,
+      "options": [
+        "Manzana",
+        "Manzana Cero",
+        "Pomelo",
+        "Pomelo Cero",
+        "Naranja",
+        "Naranja Cero",
+        "Pera"
+      ]
+    },
+
+    {
+      "name": "Licuado chico",
+      "price": 5500,
+      "note": "Ejemplo: banana + leche"
+    },
+    {
+      "name": "Licuado grande",
+      "price": 6500,
+      "note": "Ejemplo: banana + leche"
+    },
+
+    { "name": "Vaso de limonada chico", "price": 5000 },
+    { "name": "Vaso de limonada grande", "price": 6500 }
+  ]
     },
     {
       "id": "cervezas",
