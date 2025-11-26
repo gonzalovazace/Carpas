@@ -204,8 +204,44 @@ function prepareAndAddToCart(itemId, index, basePrice, categoryId){
     details.push("Ingredientes: " + Array.from(selected).map(s => s.value).join(", "));
   }
 
-  // --- Opciones del JSON ---
-  if (itemData.options) {
+// --- Opciones del JSON ---
+if (itemData.options) {
+
+  // Caso especial: Menú infantil
+  if (itemData.name === "Menú infantil") {
+
+    const platoSel = document.getElementById(`plato-${itemId}`);
+    const plato = platoSel?.value;
+
+    if (!plato) {
+      alert("Por favor seleccioná el plato");
+      return;
+    }
+
+    details.push(`Plato: ${plato}`);
+
+    // Si NO es pasta → debe elegir acompañamiento
+    if (plato !== "Pasta seca") {
+      const acomSel = document.getElementById(`acompañamiento-${itemId}`);
+      if (!acomSel?.value) {
+        alert("Por favor seleccioná el acompañamiento");
+        return;
+      }
+      details.push(`Acompañamiento: ${acomSel.value}`);
+    }
+
+    // Si ES pasta → debe elegir salsa
+    if (plato === "Pasta seca") {
+      const salsaSel = document.getElementById(`salsa-${itemId}`);
+      if (!salsaSel?.value) {
+        alert("Por favor seleccioná la salsa");
+        return;
+      }
+      details.push(`Salsa: ${salsaSel.value}`);
+    }
+
+  } else {
+    // Resto de productos (sin cambios)
     for (const optKey in itemData.options) {
       const sel = document.getElementById(`${optKey}-${itemId}`);
       if (!sel || !sel.value) {
@@ -215,6 +251,8 @@ function prepareAndAddToCart(itemId, index, basePrice, categoryId){
       details.push(`${optKey}: ${sel.value}`);
     }
   }
+}
+
 
 // --- Sandwiches ---
 if (isSandwich){
