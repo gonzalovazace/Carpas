@@ -519,15 +519,14 @@ const hasAnyOptions = (!isPancho) && (hasJsonOptions || isSandwich || isEnsalada
 
               if (key === "salsa"){
                 optionsHtml += `
-<div id="salsa-container-${itemId}" style="margin-bottom:8px; display:none;">
-  <strong>Salsa:</strong><br>
-  <select id="salsa-${itemId}" style="padding:6px;margin-top:6px;width:100%;">
-    <option value="">Elegir salsa</option>
-    ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
-  </select>
-</div>
-
-              }
+<div id="salsa-${itemId}" style="margin-bottom:8px; display:none;"> 
+<strong>Salsa:</strong><br>
+<select id="salsa-${itemId}" style="padding:6px;margin-top:6px;width:100%;"> 
+<option value="">Elegir salsa</option>
+${opts.map(o => <option value="${o}">${o}</option>).join('')} 
+           </select>
+           </div>; }
+              
 
             } else {
               optionsHtml += `
