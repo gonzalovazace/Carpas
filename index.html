@@ -309,6 +309,28 @@ if (isSandwich){
 }
 
 
+function prepareAndAddPancho(itemId, index, basePrice, categoryId){
+  const itemData = data.categories
+    .find(c => c.id === categoryId)
+    .items[index];
+
+  const baseName = itemData.name;
+
+  const notes = document.getElementById(`notes-${itemId}`)?.value.trim() || "";
+
+  cart.push({
+    name: notes ? `${baseName} [${notes}]` : baseName,
+    price: basePrice,
+    quantity: 1,
+    notes
+  });
+
+  resetItemOptions(itemId);
+  renderCart();
+  showToast(`${baseName} agregado al carrito`);
+}
+
+
 function resetItemOptions(itemId){
   const pan = document.getElementById(`pan-${itemId}`);
   if (pan) pan.selectedIndex = 0;
@@ -477,7 +499,7 @@ function renderSections(categories){
       const isSandwich = SANDWICH_CATEGORIES.includes(cat.id);
       const isEnsalada = ENSALADA_CATEGORIES.includes(cat.id);
       const hasJsonOptions = item.options && Object.keys(item.options).length > 0;
-const hasAnyOptions = (!isPancho) && (hasJsonOptions || isSandwich || isEnsalada);
+const hasAnyOptions = isPancho || hasJsonOptions || isSandwich || isEnsalada;
 
 
       let optionsHtml = '';
@@ -648,13 +670,20 @@ const mainAddButton = `
           ${item.description ? `<div class="description">${item.description}</div>` : ''}
 ${mainAddButton}
 
-${
-  isPancho
+${ isPancho
     ? `
-      <div style="margin-top:8px;">
-        <label style="font-size:13px;">Notas:</label><br>
-        <input id="notes-${itemId}" placeholder="Ej: sin condimentos"
-          style="width:100%;padding:8px;margin-top:6px;border:1px solid #ccc;border-radius:6px;">
+      <div id="options-${itemId}" class="options-panel" style="display:none;">
+        <div style="margin-top:8px;">
+          <label style="font-size:13px;">Notas:</label><br>
+          <input id="notes-${itemId}" placeholder="Ej: sin condimentos"
+            style="width:100%;padding:8px;margin-top:6px;border:1px solid #ccc;border-radius:6px;">
+        </div>
+
+        <button class="add-btn"
+          style="width:100%;margin-top:10px;background:#17a2b8;"
+          onclick="prepareAndAddPancho('${itemId}', ${index}, ${item.price}, '${cat.id}')">
+          Agregar
+        </button>
       </div>
     `
     : optionsHtml
