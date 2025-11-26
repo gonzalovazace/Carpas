@@ -254,7 +254,7 @@
 
     {
       "id": "cervezas",
-      "name": "Cervezas",
+      "name": "Cervezas y jarras",
       "items": [
         { "name": "Balde de Budweiser x6", "price": 30000 },
         { "name": "Balde de Coronas x6", "price": 35000 },
@@ -290,17 +290,17 @@
         {
           "name": "Jarra de frutas con Norton Cosecha Tardía",
           "price": 18000,
-          "description": "Incluye frutas + vino blanco a elección de la carta"
+          "description": "Incluye frutas + vino blanco dulce"
         },
         {
           "name": "Jarra de frutas con Altos del Plata Chardonnay",
           "price": 21000,
-          "description": "Incluye frutas + vino blanco a elección de la carta"
+          "description": "Incluye frutas + vino blancoc chardonnay"
         },
         {
           "name": "Jarra de frutas con Chandon Extra Brut / Delice",
           "price": 38000,
-          "description": "Incluye frutas + vino blanco a elección de la carta"
+          "description": "Incluye frutas + espumante"
         },
         {
           "name": "Jarra de frutas con vino o espumante a elección",
@@ -309,7 +309,7 @@
         },
 
         { "name": "Tinto de verano con vino a elección", "price": 6500 },
-        { "name": "Tinto de verano con vino de la casa", "price": 21000 }
+        { "name": "Tinto de verano con vino de la casa", "price": 21000 },
       ]
     },
 
