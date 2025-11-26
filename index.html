@@ -232,7 +232,7 @@ if (itemData.options) {
 
     // Si ES pasta → debe elegir salsa
     if (plato === "Pasta seca") {
-      const salsaSel = document.getElementById(`salsa-${itemId}`);
+      const salsaSel = document.querySelector(`#salsa-${itemId} select`);
       if (!salsaSel?.value) {
         alert("Por favor seleccioná la salsa");
         return;
