@@ -132,7 +132,14 @@
         { "name": "Chipá 1/2", "price": 9500 },
         { "name": "Chipá 1k", "price": 18000 },
         { "name": "Ensalada de frutas", "price": 6500 },
-        { "name": "Waffle de dulce de leche, crema o mixto", "price": 9000 }
+        {
+  "name": "Waffle de dulce de leche, crema o mixto",
+  "price": 9000,
+  "options": {
+    "tipo": ["Dulce de leche", "Crema", "Mixto"]
+  }
+}
+
       ]
     },
     {
