@@ -19,6 +19,7 @@
         { "name": "Ensalada Leo", "description": "Atún, cherry, palta y palmitos", "price": 15000 }
       ]
     },
+
     {
       "id": "cocina",
       "name": "Cocina",
@@ -35,28 +36,29 @@
         { "name": "Cono patitas", "price": 13000 },
         { "name": "Cono Rabas", "price": 21000 },
         { "name": "Langostinos apanados 8/10 piezas", "price": 22000 },
+
         {
-  "name": "Menú infantil",
-  "price": 15000,
-  "options": {
-    "plato": [
-      "Hamburguesa",
-      "Milanesa",
-      "Suprema",
-      "Patitas de pollo",
-      "Pasta seca"
-    ],
-    "acompañamiento": [
-      "Papas fritas",
-      "Puré"
-    ],
-    "salsa": [
-      "Crema",
-      "Fileto",
-      "Manteca"
-    ]
-  }
-},
+          "name": "Menú infantil",
+          "price": 15000,
+          "options": {
+            "plato": [
+              "Hamburguesa",
+              "Milanesa",
+              "Suprema",
+              "Patitas de pollo",
+              "Pasta seca"
+            ],
+            "acompañamiento": [
+              "Papas fritas",
+              "Puré"
+            ],
+            "salsa": [
+              "Crema",
+              "Fileto",
+              "Manteca"
+            ]
+          }
+        },
 
         {
           "name": "Milanesa de ternera",
@@ -78,6 +80,7 @@
         { "name": "Porción de arroz", "price": 9000 },
         { "name": "Porción de puré", "price": 9000 },
         { "name": "Revuelto gramajo", "price": 23000 },
+
         {
           "name": "Suprema",
           "price": 20000,
@@ -95,6 +98,7 @@
         { "name": "Tortilla de papas", "price": 16000 }
       ]
     },
+
     {
       "id": "sandwiches",
       "name": "Sandwiches",
@@ -124,6 +128,7 @@
         { "name": "Pancho", "price": 5000 }
       ]
     },
+
     {
       "id": "merienda",
       "name": "Merienda",
@@ -132,111 +137,120 @@
         { "name": "Chipá 1/2", "price": 9500 },
         { "name": "Chipá 1k", "price": 18000 },
         { "name": "Ensalada de frutas", "price": 6500 },
+
         {
-  "name": "Waffle de dulce de leche, crema o mixto",
-  "price": 9000,
-  "options": {
-    "tipo": ["Dulce de leche", "Crema", "Mixto"]
-  }
-}
+          "name": "Promo café + medialuna",
+          "price": 3800,
+          "note": "Aclarar tipo de café (cortado, con leche, lágrima, etc.)"
+        },
 
-      ]
-    },
-{
-  "id": "bebidas-sin-alcohol",
-  "name": "Bebidas sin alcohol",
-  "items": [
-    { "name": "Agua sin gas chica", "price": 3000 },
-    { "name": "Agua con gas chica", "price": 3000 },
+            { "name": "Promo café + 1/2 tostado", "price": 5000, "note": "Aclarar tipo de café" },
 
-    {
-      "name": "Gaseosa chica",
-      "price": 3000,
-      "options": [
-        "Pepsi",
-        "Pepsi Black",
-        "Pepsi Twist",
-        "7up",
-        "7up Free",
-        "Paso de los Toros Tónica",
-        "Paso de los Toros Pomelo",
-        "Mirinda"
-      ]
-    },
-    {
-      "name": "Lata de gaseosa",
-      "price": 2500,
-      "options": [
-        "Pepsi",
-        "Pepsi Black",
-        "Pepsi Twist",
-        "7up",
-        "7up Free",
-        "Paso de los Toros Tónica",
-        "Paso de los Toros Pomelo",
-        "Mirinda"
-      ]
-    },
-    {
-      "name": "Gaseosa grande",
-      "price": 4000,
-      "options": [
-        "Pepsi",
-        "Pepsi Black",
-        "Pepsi Twist",
-        "7up",
-        "7up Free",
-        "Paso de los Toros Tónica",
-        "Paso de los Toros Pomelo",
-        "Mirinda"
-      ]
-    },
-
-    { "name": "Jarra limonada grande", "price": 8000 },
-    { "name": "Jugo exprimido 480cc", "price": 5500 },
-
-    {
-      "name": "Levite chica",
-      "price": 3000,
-      "options": [
-        "Manzana",
-        "Manzana Cero",
-        "Pomelo",
-        "Pomelo Cero",
-        "Naranja",
-        "Naranja Cero",
-        "Pera"
-      ]
-    },
-    {
-      "name": "Levite grande",
-      "price": 4000,
-      "options": [
-        "Manzana",
-        "Manzana Cero",
-        "Pomelo",
-        "Pomelo Cero",
-        "Naranja",
-        "Naranja Cero",
-        "Pera"
+        {
+          "name": "Waffle de dulce de leche, crema o mixto",
+          "price": 9000,
+          "options": {
+            "tipo": ["Dulce de leche", "Crema", "Mixto"]
+          }
+        }
       ]
     },
 
     {
-      "name": "Licuado chico",
-      "price": 5500,
-      "note": "Ejemplo: banana + leche"
-    },
-    {
-      "name": "Licuado grande",
-      "price": 6500,
-      "note": "Ejemplo: banana + leche"
-    },
+      "id": "bebidas-sin-alcohol",
+      "name": "Bebidas sin alcohol",
+      "items": [
+        { "name": "Agua sin gas chica", "price": 3000 },
+        { "name": "Agua con gas chica", "price": 3000 },
 
-    { "name": "Vaso de limonada chico", "price": 5000 },
-    { "name": "Vaso de limonada grande", "price": 6500 }
-  ]
-},
+        {
+          "name": "Gaseosa chica",
+          "price": 3000,
+          "options": [
+            "Pepsi",
+            "Pepsi Black",
+            "Pepsi Twist",
+            "7up",
+            "7up Free",
+            "Paso de los Toros Tónica",
+            "Paso de los Toros Pomelo",
+            "Mirinda"
+          ]
+        },
+        {
+          "name": "Lata de gaseosa",
+          "price": 2500,
+          "options": [
+            "Pepsi",
+            "Pepsi Black",
+            "Pepsi Twist",
+            "7up",
+            "7up Free",
+            "Paso de los Toros Tónica",
+            "Paso de los Toros Pomelo",
+            "Mirinda"
+          ]
+        },
+        {
+          "name": "Gaseosa grande",
+          "price": 4000,
+          "options": [
+            "Pepsi",
+            "Pepsi Black",
+            "Pepsi Twist",
+            "7up",
+            "7up Free",
+            "Paso de los Toros Tónica",
+            "Paso de los Toros Pomelo",
+            "Mirinda"
+          ]
+        },
+
+        { "name": "Jarra limonada grande", "price": 8000 },
+        { "name": "Jugo exprimido 480cc", "price": 5500 },
+
+        {
+          "name": "Levite chica",
+          "price": 3000,
+          "options": [
+            "Manzana",
+            "Manzana Cero",
+            "Pomelo",
+            "Pomelo Cero",
+            "Naranja",
+            "Naranja Cero",
+            "Pera"
+          ]
+        },
+        {
+          "name": "Levite grande",
+          "price": 4000,
+          "options": [
+            "Manzana",
+            "Manzana Cero",
+            "Pomelo",
+            "Pomelo Cero",
+            "Naranja",
+            "Naranja Cero",
+            "Pera"
+          ]
+        },
+
+        {
+          "name": "Licuado chico",
+          "price": 5500,
+          "note": "Ejemplo: banana + leche"
+        },
+        {
+          "name": "Licuado grande",
+          "price": 6500,
+          "note": "Ejemplo: banana + leche"
+        },
+
+        { "name": "Vaso de limonada chico", "price": 5000 },
+        { "name": "Vaso de limonada grande", "price": 6500 }
+      ]
+    },
 
     {
       "id": "cervezas",
@@ -244,19 +258,61 @@
       "items": [
         { "name": "Balde de Budweiser x6", "price": 30000 },
         { "name": "Balde de Coronas x6", "price": 35000 },
-        { "name": "Budweiser 355cc", "price": 6000 },
-        { "name": "Corona porrón 330cc", "price": 7000 },
-        { "name": "Patagonia Amber Lager / Bohemian / 24/7", "price": 7000 },
+
+        {
+          "name": "Budweiser 355cc",
+          "price": 6000
+        },
+
+        {
+          "name": "Corona porrón 330cc",
+          "price": 7000
+        },
+
+        {
+          "name": "Patagonia Amber Lager / Bohemian / 24/7",
+          "price": 7000,
+          "options": [
+            "Lager (Rubia)",
+            "Amber (Roja)",
+            "24.7 (IPA)"
+          ]
+        },
+
         { "name": "Stella 970cc", "price": 12000 },
-        { "name": "Stella lata 473cc", "price": 7000 },
-        { "name": "Jarra de frutas con Norton Cosecha Tardía", "price": 18000 },
-        { "name": "Jarra de frutas con Altos del Plata Chardonnay", "price": 21000 },
-        { "name": "Jarra de frutas con Chandon Extra Brut / Delice", "price": 38000 },
-        { "name": "Jarra de frutas con vino o espumante a elección", "price": 6500 },
+
+        { "name": "Stella porrón 473cc", "price": 7000 },
+
+        { "name": "Stella 0.0", "price": 7000, "description": "Sin alcohol" },
+
+        { "name": "Corona Cero", "price": 7000, "description": "Sin alcohol" },
+
+        {
+          "name": "Jarra de frutas con Norton Cosecha Tardía",
+          "price": 18000,
+          "description": "Incluye frutas + vino blanco a elección de la carta"
+        },
+        {
+          "name": "Jarra de frutas con Altos del Plata Chardonnay",
+          "price": 21000,
+          "description": "Incluye frutas + vino blanco a elección de la carta"
+        },
+        {
+          "name": "Jarra de frutas con Chandon Extra Brut / Delice",
+          "price": 38000,
+          "description": "Incluye frutas + vino blanco a elección de la carta"
+        },
+        {
+          "name": "Jarra de frutas con vino o espumante a elección",
+          "price": 6500,
+          "description": "Después de elegir la jarra, seleccionar un vino blanco de la carta"
+        },
+
         { "name": "Tinto de verano con vino a elección", "price": 6500 },
         { "name": "Tinto de verano con vino de la casa", "price": 21000 }
       ]
     },
+
     {
       "id": "vinos",
       "name": "Vinos",
@@ -280,6 +336,7 @@
         { "name": "Cafayate Terrior de Altura Torrontés 750cc", "price": 19000 }
       ]
     },
+
     {
       "id": "espumantes",
       "name": "Espumantes",
@@ -294,11 +351,12 @@
         { "name": "Baron B Extra Brut 750cc", "price": 40000 }
       ]
     },
+
     {
       "id": "cafeteria",
       "name": "Cafetería",
       "items": [
-        { "name": "Café", "price": 3000 },
+        { "name": "Café", "price": 3000, "note": "Aclarar tipo (solo, cortado, con leche, lágrima, etc.)" },
         { "name": "Capuccino / submarino", "price": 4000 },
         { "name": "Chocolatada Cindor chica", "price": 3500 },
         { "name": "Churro unidad", "price": 1500 },
@@ -308,23 +366,22 @@
         { "name": "1/2 docena de medialunas", "price": 5500 },
         { "name": "Medialunas docena", "price": 10000 },
         { "name": "Medialunas jamón y queso", "price": 4000 },
-        { "name": "Promo café + medialuna", "price": 3800 },
-        { "name": "Promo café + 1/2 tostado", "price": 5000 },
         { "name": "Tostadas pan de molde porción", "price": 5000 },
-        { "name": "Té", "price": 3000 }
+        { "name": "Té", "price": 3000, "note": "Aclarar variedad (té negro, verde, manzanilla, etc.)" }
       ]
     },
+
     {
       "id": "tragos",
       "name": "Tragos",
       "items": [
         { "name": "Aperol Spritz", "price": 9000 },
         { "name": "Branca Cola", "price": 7000 },
-        { "name": "Caipirinha", "price": 8500 },
+        { "name": "Caipirinha", "price": 8500, "note": "Aclarar fruta si aplica (limón, maracuyá, frutos rojos)" },
         { "name": "Campari", "price": 7000 },
         { "name": "Caipiroska", "price": 8500 },
         { "name": "Carpano Orange", "price": 7000 },
-        { "name": "Daikiri frutilla / durazno / ananá", "price": 8500 },
+        { "name": "Daikiri frutilla / durazno / ananá", "price": 8500, "note": "Aclarar sabor" },
         { "name": "Ramazzotti Rosato Spritz", "price": 8000 },
         { "name": "Ramazzotti Rosato Tonic", "price": 8000 },
         { "name": "Cuba Libre", "price": 7000 },
