@@ -221,9 +221,27 @@
         { "name": "Vaso de limonada grande", "price": 6500 }
       ]
     },
+     {
+      "id": "cafeteria",
+      "name": "Cafetería",
+      "items": [
+        { "name": "Café", "price": 3000, "note": "Aclarar tipo (solo, cortado, con leche, lágrima, etc.)" },
+        { "name": "Capuccino / submarino", "price": 4000 },
+        { "name": "Chocolatada Cindor chica", "price": 3500 },
+        { "name": "Churro unidad", "price": 1500 },
+        { "name": "Churros 1/2 docena", "price": 7500 },
+        { "name": "Churros docena", "price": 14000 },
+        { "name": "Medialunas unidad", "price": 1200 },
+        { "name": "1/2 docena de medialunas", "price": 5500 },
+        { "name": "Medialunas docena", "price": 10000 },
+        { "name": "Medialunas jamón y queso", "price": 4000 },
+        { "name": "Tostadas pan de molde porción", "price": 5000 },
+        { "name": "Té", "price": 3000, "note": "Aclarar variedad (té negro, verde, manzanilla, etc.)" }
+      ]
+    },
     {
       "id": "cervezas",
-      "name": "Cervezas",
+      "name": "Cervezas y jarras",
       "items": [
         { "name": "Balde de Budweiser x6", "price": 30000 },
         { "name": "Balde de Coronas x6", "price": 35000 },
@@ -243,17 +261,17 @@
         {
           "name": "Jarra de frutas con Norton Cosecha Tardía",
           "price": 18000,
-          "description": "Incluye frutas + vino blanco a elección de la carta"
+          "description": "Incluye frutas + vino blanco dulce"
         },
         {
           "name": "Jarra de frutas con Altos del Plata Chardonnay",
           "price": 21000,
-          "description": "Incluye frutas + vino blanco a elección de la carta"
+          "description": "Incluye frutas + vino blanco chardonnay"
         },
         {
           "name": "Jarra de frutas con Chandon Extra Brut / Delice",
           "price": 38000,
-          "description": "Incluye frutas + vino blanco a elección de la carta"
+          "description": "Incluye frutas + espumante"
         },
         {
           "name": "Jarra de frutas con vino o espumante a elección",
@@ -299,24 +317,6 @@
         { "name": "Baron B Brut Nature 750cc", "price": 55000 },
         { "name": "Baron B Brut Rosé 750cc", "price": 55000 },
         { "name": "Baron B Extra Brut 750cc", "price": 40000 }
-      ]
-    },
-    {
-      "id": "cafeteria",
-      "name": "Cafetería",
-      "items": [
-        { "name": "Café", "price": 3000, "note": "Aclarar tipo (solo, cortado, con leche, lágrima, etc.)" },
-        { "name": "Capuccino / submarino", "price": 4000 },
-        { "name": "Chocolatada Cindor chica", "price": 3500 },
-        { "name": "Churro unidad", "price": 1500 },
-        { "name": "Churros 1/2 docena", "price": 7500 },
-        { "name": "Churros docena", "price": 14000 },
-        { "name": "Medialunas unidad", "price": 1200 },
-        { "name": "1/2 docena de medialunas", "price": 5500 },
-        { "name": "Medialunas docena", "price": 10000 },
-        { "name": "Medialunas jamón y queso", "price": 4000 },
-        { "name": "Tostadas pan de molde porción", "price": 5000 },
-        { "name": "Té", "price": 3000, "note": "Aclarar variedad (té negro, verde, manzanilla, etc.)" }
       ]
     },
     {
