@@ -1,4 +1,3 @@
-
 {
   "categories": [
     {
@@ -240,11 +239,7 @@
         {
           "name": "Patagonia",
           "price": 7000,
-          "options": [
-            "Lager (Rubia)",
-            "Amber (Roja)",
-            "24.7 (IPA)"
-          ]
+          "options": ["Lager (Rubia)", "Amber (Roja)", "24.7 (IPA)"]
         },
 
         { "name": "Stella 970cc", "price": 12000 },
@@ -365,3 +360,4 @@
     }
   ]
 }
+
