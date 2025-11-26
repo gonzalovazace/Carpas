@@ -65,15 +65,32 @@
     <h3 style="margin-top:0;">🧺 Tu Pedido</h3>
     <div id="cartItems"></div>
 
-    <div style="margin-top:12px;">
-      <label style="font-weight:600;">Balneario *</label>
-      <select id="balneario" style="width:100%; padding:10px; margin-top:6px; border-radius:6px; border:1px solid #ccc;">
-        <option value="">Selecciona</option>
+    <div style="margin-top:12px; border-top:1px dashed #ccc; padding-top:12px;">
+      
+      <label style="font-weight:600; font-size:14px;">Balneario *</label>
+      <select id="balneario" style="width:100%; padding:10px; margin-top:6px; margin-bottom:12px; border-radius:6px; border:1px solid #ccc;">
+        <option value="">Seleccioná Balneario...</option>
         <option value="Mar del Plata">Mar del Plata</option>
         <option value="La Reina">La Reina</option>
       </select>
-      <label style="font-weight:600; margin-top:8px; display:block;">Número Carpa/Sombrilla *</label>
-      <input id="ubicacion" placeholder="Ej: Carpa 15" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc; margin-top:6px;">
+
+      <div style="display:flex; gap:10px;">
+        
+        <div style="flex:1;">
+          <label style="font-weight:600; font-size:14px;">Tipo *</label>
+          <select id="tipoUbicacion" style="width:100%; padding:10px; margin-top:6px; border-radius:6px; border:1px solid #ccc;">
+            <option value="Carpa">Carpa</option>
+            <option value="Sombrilla">Sombrilla</option>
+          </select>
+        </div>
+
+        <div style="flex:1;">
+          <label style="font-weight:600; font-size:14px;">Número *</label>
+          <input id="numeroUbicacion" type="number" placeholder="Ej: 154" 
+            style="width:100%; padding:10px; margin-top:6px; border-radius:6px; border:1px solid #ccc;">
+        </div>
+
+      </div>
     </div>
 
     <div id="total"></div>
@@ -334,14 +351,20 @@ function renderCart(){
 function sendToWhatsApp(){
   if (!cart.length){ showToast('El carrito está vacío'); return; }
 
+  // 1. Capturamos los 3 valores nuevos
   const bal = document.getElementById('balneario').value;
-  const ubi = document.getElementById('ubicacion').value.trim();
+  const tipo = document.getElementById('tipoUbicacion').value;
+  const num = document.getElementById('numeroUbicacion').value.trim();
 
-  if (!bal){ showToast('Falta seleccionar Balneario'); return; }
-  if (!ubi){ showToast('Falta número de Carpa/Sombrilla'); return; }
+  // 2. Validamos que no falte nada
+  if (!bal){ showToast('Por favor seleccioná el balneario'); return; }
+  if (!num){ showToast('Por favor escribí el número de Carpa/Sombrilla'); return; }
 
+  // 3. Armamos el mensaje
   const header = encodeURIComponent("🏖️ *NUEVO PEDIDO*");
-  const delivery = encodeURIComponent(`📍 *Lugar:* ${bal}\n🏖️ *Ubicación:* ${ubi}`);
+  
+  // Aquí combinamos todo: "Balneario X - Carpa 15"
+  const delivery = encodeURIComponent(`📍 *Lugar:* ${bal}\n⛱️ *Ubicación:* ${tipo} N° ${num}`);
 
   const itemsText = cart.map(it=>{
     let line = `- ${it.quantity}x ${it.name}`;
