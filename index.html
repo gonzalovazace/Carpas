@@ -105,10 +105,9 @@ const ADICIONALES_PREMIUM = [
 ];
 
 const SANDWICH_PANS = ["Árabe","Pebete","Francés"];
+// Asegurate que estos IDs coincidan con los de tu JSON
 const SANDWICH_CATEGORIES = ['sandwiches', 'sandwiches-frios','sandwiches-calientes','vegetarianos'];
 const ENSALADA_CATEGORIES = ['ensaladas'];
-  const NO_PAN_ITEMS = ["hamburguesa", "hamburguesa 2 ingredientes"];
-
 
 /* ---------------------------
    Utilidades
@@ -122,228 +121,179 @@ function toggleMenu(){
   document.getElementById('menuNav').classList.toggle('open');
 }
 
+function showToast(msg){
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.style = "position:fixed;top:80px;right:20px;background:#28a745;color:#fff;padding:10px 14px;border-radius:8px;z-index:9999;box-shadow:0 6px 16px rgba(0,0,0,0.2);";
+  t.innerText = msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),2200);
+}
+
+/* ---------------------------
+   Lógica Menú Infantil
+   --------------------------- */
+function updateMenuInfantil(itemId) {
+  const platoSel = document.getElementById(`plato-${itemId}`);
+  const acomDiv = document.getElementById(`acom-${itemId}`);
+  const salsaDiv = document.getElementById(`salsa-${itemId}`);
+
+  if (!platoSel) return;
+  const plato = platoSel.value;
+
+  // Reseteamos visualización
+  if (acomDiv) acomDiv.style.display = "none";
+  if (salsaDiv) salsaDiv.style.display = "none";
+
+  if (!plato) return;
+
+  if (plato === "Pasta seca") {
+    if (salsaDiv) salsaDiv.style.display = "block";
+  } else {
+    // Hamburguesa, milanesa, etc llevan acompañamiento
+    if (acomDiv) acomDiv.style.display = "block";
+  }
+}
+
 /* ---------------------------
    Carrito: agregar / eliminar / render
    --------------------------- */
 function addSimpleToCart(baseName, basePrice){
-  // simple item (no options)
-  cart.push({ name: baseName, baseName, price: basePrice, quantity: 1, notes: ''});
+  cart.push({ name: baseName, price: basePrice, quantity: 1, notes: ''});
   renderCart();
   showToast(`${baseName} agregado al carrito`);
 }
-  function updateMenuInfantil(itemId) {
-  const plato = document.getElementById(`plato-${itemId}`).value;
-  const acom = document.getElementById(`acom-${itemId}`);
-  const salsa = document.getElementById(`salsa-${itemId}`);
-
-  if (!plato) {
-    acom.style.display = "none";
-    salsa.style.display = "none";
-    return;
-  }
-
-  if (plato === "Pasta seca") {
-    acom.style.display = "none";
-    salsa.style.display = "block";
-  } else {
-    salsa.style.display = "none";
-    acom.style.display = "block";
-  }
-}
-
-function handleAddClick(itemId, index, basePrice, categoryId) {
-  const panel = document.getElementById(`options-${itemId}`);
-  const btn = document.querySelector(`#${itemId}-btn`);
-
-  if (panel) {
-    // Si el panel está cerrado → abrirlo y cambiar botón
-    if (panel.style.display !== 'block') {
-      panel.style.display = 'block';
-      btn.innerText = "Agregar al carrito";
-      btn.style.background = "#28a745"; // verde "confirmar"
-    } 
-    // Si ya está abierto → agregar al carrito
-    else {
-      prepareAndAddToCart(itemId, index, basePrice, categoryId);
-
-      // Restauro el botón
-      btn.innerText = "Agregar";
-      btn.style.background = "#17a2b8"; // celeste original
-    }
-  } else {
-    //  → agregar directo
-    const cat = data.categories.find(c => c.id === categoryId);
-    const item = cat.items[index];
-    addSimpleToCart(item.name, item.price);
-  }
-}
-
 
 function prepareAndAddToCart(itemId, index, basePrice, categoryId){
-
-  const itemData = data.categories
-    .find(c => c.id === categoryId)
-    ?.items[index];
-
+  const itemData = data.categories.find(c => c.id === categoryId)?.items[index];
   const baseName = itemData.name;
-  const itemHasTwoIng = itemData.twoIngredients;
-
+  
   let finalPrice = basePrice;
-  const isSandwich = SANDWICH_CATEGORIES.includes(categoryId);
-  const isEnsalada = ENSALADA_CATEGORIES.includes(categoryId);
-
   const details = [];
 
-  // --- Validar 2 ingredientes ---
-  if (itemHasTwoIng) {
+  // --- 1. Validar 2 ingredientes (si aplica) ---
+  if (itemData.twoIngredients) {
     const selected = document.querySelectorAll(`input[name="twoIng-${itemId}"]:checked`);
     if (selected.length !== 2) {
-      alert("Debe elegir exactamente 2 ingredientes.");
+      alert("Por favor elegí exactamente 2 ingredientes.");
       return;
     }
     details.push("Ingredientes: " + Array.from(selected).map(s => s.value).join(", "));
   }
 
-// --- Opciones del JSON ---
-if (itemData.options) {
+  // --- 2. Opciones del JSON (Dinámico) ---
+  if (itemData.options) {
+    // Caso especial: Menú infantil
+    if (itemData.name === "Menú infantil") {
+      const platoSel = document.getElementById(`plato-${itemId}`);
+      const plato = platoSel?.value;
+      if (!plato) { alert("Seleccioná el plato"); return; }
+      details.push(`Plato: ${plato}`);
 
-  // Caso especial: Menú infantil
-  if (itemData.name === "Menú infantil") {
-
-    const platoSel = document.getElementById(`plato-${itemId}`);
-    const plato = platoSel?.value;
-
-    if (!plato) {
-      alert("Por favor seleccioná el plato");
-      return;
-    }
-
-    details.push(`Plato: ${plato}`);
-
-    // Si NO es pasta → debe elegir acompañamiento
-    if (plato !== "Pasta seca") {
-      const acomSel = document.getElementById(`acompañamiento-${itemId}`);
-      if (!acomSel?.value) {
-        alert("Por favor seleccioná el acompañamiento");
-        return;
+      if (plato !== "Pasta seca") {
+        const acomSel = document.getElementById(`acompañamiento-${itemId}`);
+        if (!acomSel?.value) { alert("Seleccioná el acompañamiento"); return; }
+        details.push(`Acompañamiento: ${acomSel.value}`);
+      } else {
+        const salsaSel = document.getElementById(`salsa-select-${itemId}`);
+        if (!salsaSel?.value) { alert("Seleccioná la salsa"); return; }
+        details.push(`Salsa: ${salsaSel.value}`);
       }
-      details.push(`Acompañamiento: ${acomSel.value}`);
-    }
 
-    // Si ES pasta → debe elegir salsa
-if (plato === "Pasta seca") {
-  const salsaSel = document.getElementById(`salsa-select-${itemId}`);
-  if (!salsaSel?.value) {
-    alert("Por favor seleccioná la salsa");
-    return;
-  }
-  details.push(`Salsa: ${salsaSel.value}`);
-}
-
-
-  } else {
-    // Resto de productos (sin cambios)
-    for (const optKey in itemData.options) {
-      const sel = document.getElementById(`${optKey}-${itemId}`);
-      if (!sel || !sel.value) {
-        alert(`Por favor seleccioná: ${optKey}`);
-        return;
+    } else {
+      // Resto de productos (Gaseosas, Cocina, etc)
+      // Recorremos las claves (ej: 'guarnicion', 'variedad', 'sabor')
+      for (const optKey in itemData.options) {
+        const sel = document.getElementById(`${optKey}-${itemId}`);
+        if (sel && sel.value) {
+          details.push(`${optKey.charAt(0).toUpperCase() + optKey.slice(1)}: ${sel.value}`);
+        } else if (sel && !sel.value) {
+           // Si existe el select pero no eligió nada (opcional: forzar selección)
+           alert(`Por favor seleccioná: ${optKey}`);
+           return;
+        }
       }
-      details.push(`${optKey}: ${sel.value}`);
     }
   }
-}
 
+  // --- 3. Lógica de Sándwiches (Pan / Tostado) ---
+  if (SANDWICH_CATEGORIES.includes(categoryId)){
+    const nameLower = baseName.toLowerCase();
+    // Corrección: detectamos si contiene "hamburguesa" en lugar de buscar exacto
+    const esHamburguesa = nameLower.includes("hamburguesa"); 
+    const esTriple = nameLower.includes("triple");
 
-// --- Sandwiches ---
-if (isSandwich){
-
-  const noPan = NO_PAN_ITEMS.includes(baseName.toLowerCase());
-  const esTriple = baseName.toLowerCase().includes("triple");
-
-  // 🟩 Caso donde NO debe pedir pan (hamburguesas)
-  if (noPan){
-    const tostado = document.getElementById(`tostado-${itemId}`);
-    if (tostado && tostado.checked) details.push("Tostado");
-  
-  // 🟦 Caso de sandwich triple: sólo tostado
-  } else if (esTriple){
-    const tostado = document.getElementById(`tostado-${itemId}`);
-    if (tostado.checked) details.push("Tostado");
-
-  // 🟥 Caso normal: pan + tostado
-  } else {
-    const pan = document.getElementById(`pan-${itemId}`);
-    const tostado = document.getElementById(`tostado-${itemId}`);
-
-    if (!pan || !pan.value){
-      alert("Por favor seleccioná el tipo de pan.");
-      return;
+    if (esHamburguesa) {
+       // Hamburguesas no piden pan, pero chequeamos si hay check de tostado (raro, pero por si acaso)
+       const tostado = document.getElementById(`tostado-${itemId}`);
+       if (tostado && tostado.checked) details.push("Tostado");
+    } 
+    else if (esTriple) {
+       // Triples solo tostado
+       const tostado = document.getElementById(`tostado-${itemId}`);
+       if (tostado && tostado.checked) details.push("Tostado");
+    } 
+    else {
+       // Sándwiches normales (Lomo, Mila, etc)
+       const pan = document.getElementById(`pan-${itemId}`);
+       const tostado = document.getElementById(`tostado-${itemId}`);
+       
+       if (!pan || !pan.value) { alert("Seleccioná el tipo de pan."); return; }
+       details.push(`Pan: ${pan.value}`);
+       if (tostado && tostado.checked) details.push("Tostado");
     }
-
-    details.push(`Pan: ${pan.value}`);
-    if (tostado.checked) details.push("Tostado");
   }
-}
 
-
-  // --- Adicionales ---
+  // --- 4. Adicionales (Ensaladas) ---
   const adics = Array.from(document.querySelectorAll(`#adicionales-${itemId} input[type="checkbox"]:checked`));
   if (adics.length){
     details.push("+ " + adics.map(a => a.value).join(", "));
     adics.forEach(a => finalPrice += parseInt(a.dataset.price));
   }
 
-  // --- Notas ---
-  const notes = document.getElementById(`notes-${itemId}`)?.value.trim() || "";
+  // --- 5. Notas ---
+  const notesInput = document.getElementById(`notes-${itemId}`);
+  const userNotes = notesInput ? notesInput.value.trim() : "";
 
+  // Construir nombre final
   const nameWithDetails = details.length 
     ? `${baseName} [${details.join(" / ")}]`
     : baseName;
 
-  cart.push({ name: nameWithDetails, price: finalPrice, quantity: 1, notes });
+  cart.push({ name: nameWithDetails, price: finalPrice, quantity: 1, notes: userNotes });
 
   resetItemOptions(itemId);
   renderCart();
-  showToast(`${baseName} agregado al carrito`);
+  showToast(`${baseName} agregado`);
 }
 
-
 function prepareAndAddPancho(itemId, index, basePrice, categoryId){
-  const itemData = data.categories
-    .find(c => c.id === categoryId)
-    .items[index];
-
-  const baseName = itemData.name;
-
+  const itemData = data.categories.find(c => c.id === categoryId).items[index];
   const notes = document.getElementById(`notes-${itemId}`)?.value.trim() || "";
-
+  
   cart.push({
-    name: notes ? `${baseName} [${notes}]` : baseName,
+    name: itemData.name,
     price: basePrice,
     quantity: 1,
-    notes
+    notes: notes
   });
 
   resetItemOptions(itemId);
   renderCart();
-  showToast(`${baseName} agregado al carrito`);
+  showToast(`${itemData.name} agregado`);
 }
 
-
 function resetItemOptions(itemId){
-  const pan = document.getElementById(`pan-${itemId}`);
-  if (pan) pan.selectedIndex = 0;
-  const tost = document.getElementById(`tostado-${itemId}`);
-  if (tost) tost.checked = false;
-  const checks = document.querySelectorAll(`#adicionales-${itemId} input[type="checkbox"]`);
-  checks.forEach(c => c.checked = false);
+  // Reset selects
+  document.querySelectorAll(`#options-${itemId} select`).forEach(s => s.selectedIndex = 0);
+  // Reset checks
+  document.querySelectorAll(`#options-${itemId} input[type="checkbox"]`).forEach(c => c.checked = false);
+  // Reset inputs text
   const notes = document.getElementById(`notes-${itemId}`);
-  if (notes) notes.value = '';
-  const panel = document.getElementById(`options-${itemId}`);
-  if (panel) panel.style.display = 'none';
-  const btn = document.getElementById(`btn-options-${itemId}`);
-  if (btn){ btn.innerText = '➕ Agregar Opciones/Adicionales'; btn.style.background = '#5a6268'; }
+  if(notes) notes.value = '';
+  
+  // Cerrar panel
+  toggleOptions(itemId); 
 }
 
 function changeQuantity(index, delta){
@@ -375,6 +325,7 @@ function renderCart(){
 
   let total = 0;
   let qtySum = 0;
+  
   cart.forEach((item,i)=>{
     const itemTotal = item.price * item.quantity;
     total += itemTotal;
@@ -383,18 +334,18 @@ function renderCart(){
     const div = document.createElement('div');
     div.className = 'cart-item';
     div.innerHTML = `
-      <div style="max-width:70%;">
+      <div style="flex:1; padding-right:10px;">
         <div style="font-weight:600;">${item.name}</div>
-        ${item.notes ? `<div style="font-size:13px;color:#666;">"${item.notes}"</div>` : ''}
+        ${item.notes ? `<div style="font-size:13px;color:#666;font-style:italic;">"${item.notes}"</div>` : ''}
       </div>
-      <div style="display:flex;align-items:center;gap:8px;">
+      <div style="display:flex;align-items:center;gap:6px;">
         <div class="qty-controls">
           <button class="qty-btn" onclick="changeQuantity(${i}, -1)">−</button>
-          <span style="min-width:28px; text-align:center;">${item.quantity}</span>
+          <span style="min-width:20px; text-align:center; font-size:14px;">${item.quantity}</span>
           <button class="qty-btn" onclick="changeQuantity(${i}, 1)">+</button>
         </div>
-        <div style="min-width:80px; text-align:right;"><strong>${formatPrice(itemTotal)}</strong></div>
-        <button class="remove-btn" onclick="removeItem(${i})">🗑️</button>
+        <div style="min-width:70px; text-align:right; font-size:14px;"><strong>${formatPrice(itemTotal)}</strong></div>
+        <button class="remove-btn" onclick="removeItem(${i})">✕</button>
       </div>
     `;
     container.appendChild(div);
@@ -405,19 +356,7 @@ function renderCart(){
 }
 
 /* ---------------------------
-   Toast pequeño
-   --------------------------- */
-function showToast(msg){
-  const t = document.createElement('div');
-  t.className = 'toast';
-  t.style = "position:fixed;top:80px;right:20px;background:#28a745;color:#fff;padding:10px 14px;border-radius:8px;z-index:9999;box-shadow:0 6px 16px rgba(0,0,0,0.2);";
-  t.innerText = msg;
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),2200);
-}
-
-/* ---------------------------
-   Envío por WhatsApp (valida balneario+ubicacion)
+   Envío WhatsApp
    --------------------------- */
 function sendToWhatsApp(){
   if (!cart.length){ showToast('El carrito está vacío'); return; }
@@ -425,52 +364,60 @@ function sendToWhatsApp(){
   const bal = document.getElementById('balneario').value;
   const ubi = document.getElementById('ubicacion').value.trim();
 
-  if (!bal){ showToast('Por favor seleccioná el balneario'); return; }
-  if (!ubi){ showToast('Por favor indicá la carpa/sombrilla'); return; }
+  if (!bal){ showToast('Falta seleccionar Balneario'); return; }
+  if (!ubi){ showToast('Falta número de Carpa/Sombrilla'); return; }
 
-  const header = encodeURIComponent("🏖️ ¡Hola! Quiero hacer el siguiente pedido:");
-  const delivery = encodeURIComponent(`\n📍 Balneario: ${bal}\n🏖️ Ubicación: ${ubi}\n`);
+  const header = encodeURIComponent("🏖️ *NUEVO PEDIDO*");
+  const delivery = encodeURIComponent(`📍 *Lugar:* ${bal}\n🏖️ *Ubicación:* ${ubi}`);
 
   const itemsText = cart.map(it=>{
-    let line = `- ${it.name}`;
-    if (it.quantity > 1) line += ` x${it.quantity}`;
-    if (it.notes) line += ` (${it.notes})`;
-    line += ` - ${formatPrice(it.price * it.quantity)}`;
+    let line = `- ${it.quantity}x ${it.name}`;
+    if (it.notes) line += `\n  _Nota: ${it.notes}_`;
+    line += `  (${formatPrice(it.price * it.quantity)})`;
     return encodeURIComponent(line);
   }).join("%0A");
 
   const total = cart.reduce((s,it)=> s + it.price * it.quantity, 0);
-  const totalText = encodeURIComponent(`\n💰 Total: ${formatPrice(total)}`);
+  const totalText = encodeURIComponent(`💰 *TOTAL: ${formatPrice(total)}*`);
 
-  // AHORA SÍ — INCLUIMOS DELIVERY
-  const message = `${header}%0A%0A${delivery}%0A${itemsText}%0A${totalText}%0A%0A¡Gracias!`;
-
+  const message = `${header}%0A${delivery}%0A%0A${itemsText}%0A%0A${totalText}`;
   const url = `https://wa.me/${WAPP_NUMBER}?text=${message}`;
   window.open(url,'_blank');
 }
 
 /* ---------------------------
-   Opciones UI (mostrar/ocultar)
+   UI Toggle Panel
    --------------------------- */
 function toggleOptions(itemId){
   const panel = document.getElementById(`options-${itemId}`);
   const btn = document.getElementById(`btn-options-${itemId}`);
   if (!panel) return;
+  
   if (panel.style.display === 'block'){
     panel.style.display = 'none';
-    if (btn){ btn.innerText = '➕ Agregar Opciones/Adicionales'; btn.style.background='#5a6268'; }
+    if (btn){ 
+      btn.innerHTML = 'Agregar'; 
+      btn.style.background='#17a2b8'; 
+    }
   } else {
     panel.style.display = 'block';
-    if (btn){ btn.innerText = '➖ Cerrar Opciones'; btn.style.background='#dc3545'; }
+    if (btn){ 
+      // Opcional: Ocultar el botón principal al abrir opciones, 
+      // o cambiarle el texto a "Cerrar". 
+      // Aquí lo cambiamos a rojo para cerrar.
+      btn.innerHTML = 'Cancelar / Cerrar'; 
+      btn.style.background='#dc3545'; 
+    }
   }
 }
 
 /* ---------------------------
-   Renderizado del menú desde products.json
+   Renderizado Menú
    --------------------------- */
 function renderMenu(categories){
   const nav = document.getElementById('menuNav');
-  nav.innerHTML = '<button onclick="toggleMenu()" style="position:absolute;top:10px;right:10px;font-size:20px;background:none;border:none;cursor:pointer;">✖</button>';
+  nav.innerHTML = '<button onclick="toggleMenu()" style="position:absolute;top:10px;right:10px;font-size:24px;background:none;border:none;cursor:pointer;">&times;</button>';
+  
   categories.forEach(cat=>{
     const a = document.createElement('a');
     a.href = `#${cat.id}`;
@@ -498,234 +445,158 @@ function renderSections(categories){
       const isPancho = item.name.toLowerCase().includes("pancho");
       const isSandwich = SANDWICH_CATEGORIES.includes(cat.id);
       const isEnsalada = ENSALADA_CATEGORIES.includes(cat.id);
+      
+      // Detectar si tiene opciones en JSON
       const hasJsonOptions = item.options && Object.keys(item.options).length > 0;
-const hasAnyOptions = isPancho || hasJsonOptions || isSandwich || isEnsalada;
-
+      
+      // ¿Necesita panel de opciones?
+      const needsOptions = isPancho || hasJsonOptions || isSandwich || isEnsalada || item.twoIngredients;
 
       let optionsHtml = '';
 
-      /* PANEL DE OPCIONES */
-      if (hasAnyOptions){
+      if (needsOptions){
         optionsHtml += `<div id="options-${itemId}" class="options-panel" style="display:none;">`;
 
-        /* OPCIONES DEL JSON */
+        // 1. Opciones JSON (Dinámico)
         if (hasJsonOptions){
           for (const key in item.options){
             const labelKey = key.charAt(0).toUpperCase() + key.slice(1);
-
             const opts = item.options[key];
 
+            // Renderizado especial para Menú Infantil
             if (item.name === "Menú infantil"){
-
-              if (key === "plato"){
-                optionsHtml += `
-                  <div style="margin-bottom:8px;">
-                    <strong>Plato:</strong><br>
-                    <select id="plato-${itemId}" onchange="updateMenuInfantil('${itemId}')"
-                      style="padding:6px;margin-top:6px;width:100%;">
-                      <option value="">Elegir plato</option>
-                      ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
-                    </select>
-                  </div>`;
-              }
-
-              if (key === "acompañamiento"){
-                optionsHtml += `
-                  <div id="acom-${itemId}" style="margin-bottom:8px; display:none;">
-                    <strong>Acompañamiento:</strong><br>
-                    <select id="acompañamiento-${itemId}" style="padding:6px;margin-top:6px;width:100%;">
-                      <option value="">Elegir acompañamiento</option>
-                      ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
-                    </select>
-                  </div>`;
-              }
-
-if (key === "salsa"){
-  optionsHtml += `
- <div id="salsa-${itemId}" style="margin-bottom:8px; display:none;">
-  <strong>Salsa:</strong><br>
-  <select id="salsa-select-${itemId}" style="padding:6px;margin-top:6px;width:100%;">
-    <option value="">Elegir salsa</option>
-    ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
-  </select>
-</div>
-
-  `;
-}
-
-
-            } else {
-              optionsHtml += `
-                <div style="margin-bottom:8px;">
-                  <strong>${labelKey}:</strong><br>
-                  <select id="${key}-${itemId}" style="padding:6px;margin-top:6px;width:100%;">
-                    <option value="">Elegir ${key}</option>
-                    ${opts.map(o => `<option value="${o}">${o}</option>`).join('')}
-                  </select>
-                </div>`;
+               if(key === 'plato'){
+                 optionsHtml += `<div style="margin-bottom:8px;"><strong>Plato:</strong><br>
+                  <select id="plato-${itemId}" onchange="updateMenuInfantil('${itemId}')" style="width:100%;padding:8px;border-radius:4px;">
+                    <option value="">Seleccioná...</option>
+                    ${opts.map(o=>`<option value="${o}">${o}</option>`).join('')}
+                  </select></div>`;
+               } else if (key === 'acompañamiento'){
+                 optionsHtml += `<div id="acom-${itemId}" style="margin-bottom:8px;display:none;"><strong>Acompañamiento:</strong><br>
+                  <select id="acompañamiento-${itemId}" style="width:100%;padding:8px;border-radius:4px;">
+                    <option value="">Seleccioná...</option>
+                    ${opts.map(o=>`<option value="${o}">${o}</option>`).join('')}
+                  </select></div>`;
+               } else if (key === 'salsa'){
+                 optionsHtml += `<div id="salsa-${itemId}" style="margin-bottom:8px;display:none;"><strong>Salsa:</strong><br>
+                  <select id="salsa-select-${itemId}" style="width:100%;padding:8px;border-radius:4px;">
+                    <option value="">Seleccioná...</option>
+                    ${opts.map(o=>`<option value="${o}">${o}</option>`).join('')}
+                  </select></div>`;
+               }
+            } 
+            // Renderizado Genérico (Gaseosas, Cocina, etc)
+            else {
+               optionsHtml += `<div style="margin-bottom:8px;"><strong>${labelKey}:</strong><br>
+                <select id="${key}-${itemId}" style="width:100%;padding:8px;border-radius:4px;">
+                  ${opts.map(o=>`<option value="${o}">${o}</option>`).join('')}
+                </select></div>`;
             }
           }
         }
 
-        /* SANDWICHES */
-        if (isSandwich){
-
-          if (item.twoIngredients){
+        // 2. Ingredientes (Checkbox de a 2)
+        if (item.twoIngredients){
             const ING = ["Jamón","Queso","Huevo","Tomate","Lechuga"];
+            optionsHtml += `<div style="margin-bottom:8px;"><strong>Elegí 2 ingredientes:</strong>
+             <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+               ${ING.map(ing=>`<label><input type="checkbox" name="twoIng-${itemId}" value="${ing}"> ${ing}</label>`).join('')}
+             </div></div>`;
+        }
 
-            optionsHtml += `
-              <div style="margin-bottom:8px;">
-                <strong>Elegir 2 ingredientes:</strong>
-                <div id="twoIng-${itemId}"
-                     style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-                  ${ING.map(ing => `
-                    <label class="adicional-label">
-                      <input type="checkbox" name="twoIng-${itemId}" value="${ing}">
-                      ${ing}
-                    </label>
-                  `).join('')}
-                </div>
-              </div>`;
+        // 3. Sandwiches (Pan y Tostado)
+        if (isSandwich){
+          const isTriple = item.name.toLowerCase().includes("triple");
+          const isBurguer = item.name.toLowerCase().includes("hamburguesa");
+          
+          if(!isBurguer && !isTriple){
+             optionsHtml += `<div style="margin-bottom:8px;"><strong>Pan:</strong><br>
+              <select id="pan-${itemId}" style="width:100%;padding:8px;">
+                <option value="">Elegí el pan...</option>
+                ${SANDWICH_PANS.map(p=>`<option value="${p}">${p}</option>`).join('')}
+              </select></div>`;
           }
-
-          const esTriple = item.name.toLowerCase().includes("triple");
-
-          if (esTriple){
-            optionsHtml += `
-              <div style="margin-bottom:8px;">
-                <label><input type="checkbox" id="tostado-${itemId}"> Tostado</label>
-              </div>`;
-          } else {
-            optionsHtml += `
-              <div style="margin-bottom:8px;">
-                <strong>Pan:</strong><br>
-                <select id="pan-${itemId}" style="padding:6px;margin-top:6px;">
-                  <option value="">Elegir pan</option>
-                  ${SANDWICH_PANS.map(p => `<option value="${p}">${p}</option>`).join('')}
-                </select>
-                <label style="margin-left:12px;">
-                  <input type="checkbox" id="tostado-${itemId}"> Tostado
-                </label>
-              </div>`;
+          if (!isBurguer){
+             optionsHtml += `<div style="margin-bottom:8px;"><label><input type="checkbox" id="tostado-${itemId}"> Tostado</label></div>`;
           }
         }
 
-        /* ENSALADAS */
+        // 4. Ensaladas (Extras)
         if (isEnsalada){
-          const extra = [...ADICIONALES_COMUNES, ...ADICIONALES_PREMIUM];
-
-          optionsHtml += `
-            <div style="font-size:13px;">
-              <strong>Extras:</strong>
-              <div id="adicionales-${itemId}" 
-                  style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-                ${extra.map(ad => `
-                  <label class="adicional-label">
-                    <input type="checkbox" data-price="${ad.price}" value="${ad.name}">
-                    ${ad.name} <small>(${formatPrice(ad.price)})</small>
-                  </label>
-                `).join('')}
-              </div>
-            </div>`;
+           const extras = [...ADICIONALES_COMUNES, ...ADICIONALES_PREMIUM];
+           optionsHtml += `<div style="margin-bottom:8px;"><strong>Extras:</strong><div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+            ${extras.map(e=>`<label style="font-size:13px;"><input type="checkbox" data-price="${e.price}" value="${e.name}"> ${e.name} ($${e.price})</label>`).join('')}
+           </div></div>`;
         }
 
-        /* NOTAS */
-        optionsHtml += `
-          <div style="margin-top:8px;">
-            <label style="font-size:13px;">Notas:</label><br>
-            <input id="notes-${itemId}" placeholder="Ej: sin cebolla"
-              style="width:100%;padding:8px;margin-top:6px;border:1px solid #ccc;border-radius:6px;">
-          </div>
-        `;
+        // 5. Notas Generales
+        optionsHtml += `<div style="margin-top:10px;">
+          <input id="notes-${itemId}" placeholder="Notas / Aclaraciones..." style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;">
+        </div>`;
 
-/* --- BOTÓN FINAL AGREGAR --- */
-optionsHtml += `
-  <button class="add-btn"
-    style="width:100%;margin-top:10px;background:#17a2b8;"
-    onclick="prepareAndAddToCart('${itemId}', ${index}, ${item.price}, '${cat.id}')">
-    Agregar
-  </button>
-`;
+        // Botón Confirmar Agregar (Verde)
+        const funcAdd = isPancho 
+          ? `prepareAndAddPancho('${itemId}', ${index}, ${item.price}, '${cat.id}')`
+          : `prepareAndAddToCart('${itemId}', ${index}, ${item.price}, '${cat.id}')`;
 
-        optionsHtml += `</div>`;
+        optionsHtml += `<button class="add-btn" style="width:100%;margin-top:10px;background:#28a745;" onclick="${funcAdd}">Confirmar Agregar</button>`;
+        
+        optionsHtml += `</div>`; // Cierra options-panel
       }
 
-      /* BOTÓN PRINCIPAL */
-const mainAddButton = `
-  <button id="btn-options-${itemId}" class="add-btn"
-          style="margin-top:10px;width:100%;"
-
-          onclick="${hasAnyOptions
-            ? `toggleOptions('${itemId}')`
-            : `addSimpleToCart('${item.name.replace(/'/g,"\\'")}', ${item.price})`
-          }">
-          Agregar
-        </button>
-      `;
-
+      // BOTÓN PRINCIPAL (Visible siempre)
+      // Si tiene opciones -> Abre panel
+      // Si NO tiene opciones -> Agrega directo
+      const mainBtnAction = needsOptions 
+         ? `toggleOptions('${itemId}')`
+         : `addSimpleToCart('${item.name.replace(/'/g, "\\'")}', ${item.price})`;
+      
+      const mainBtnText = "Agregar";
 
       div.innerHTML = `
         <div class="item-details">
           <strong>${item.name}</strong>
           ${item.description ? `<div class="description">${item.description}</div>` : ''}
-${mainAddButton}
+          
+          <button id="btn-options-${itemId}" class="add-btn" style="width:100%;margin-top:8px;" onclick="${mainBtnAction}">
+            ${mainBtnText}
+          </button>
 
-${ isPancho
-    ? `
-      <div id="options-${itemId}" class="options-panel" style="display:none;">
-        <div style="margin-top:8px;">
-          <label style="font-size:13px;">Notas:</label><br>
-          <input id="notes-${itemId}" placeholder="Ej: sin condimentos"
-            style="width:100%;padding:8px;margin-top:6px;border:1px solid #ccc;border-radius:6px;">
+          ${optionsHtml}
         </div>
-
-        <button class="add-btn"
-          style="width:100%;margin-top:10px;background:#17a2b8;"
-          onclick="prepareAndAddPancho('${itemId}', ${index}, ${item.price}, '${cat.id}')">
-          Agregar
-        </button>
-      </div>
-    `
-    : optionsHtml
-}
-
-
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <strong class="price">${formatPrice(item.price)}</strong>
+        <div style="align-self:flex-start;">
+           <strong class="price">${formatPrice(item.price)}</strong>
         </div>
       `;
 
       sec.appendChild(div);
     });
-
     content.appendChild(sec);
   });
 }
 
-
 /* ---------------------------
-   Carga inicial del JSON y arranque
+   Inicialización
    --------------------------- */
 fetch('products.json')
-  .then(res=>{
-    if(!res.ok) throw new Error('products.json no encontrado');
-    return res.json();
+  .then(res => {
+     if(!res.ok) throw new Error("Error HTTP " + res.status);
+     return res.json();
   })
-  .then(json=>{
+  .then(json => {
     data = json;
-    renderMenu(json.categories || []);
-    renderSections(json.categories || []);
-    renderCart(); // actualizar carrito si había items en almacenamiento (podemos añadir persistencia luego)
+    if(json.categories){
+      renderMenu(json.categories);
+      renderSections(json.categories);
+      renderCart();
+    }
   })
-  .catch(err=>{
+  .catch(err => {
     console.error(err);
-    document.getElementById('content').innerHTML = '<p style="text-align:center;color:#333;">Error cargando productos. Asegurate que <code>products.json</code> esté en la misma carpeta.</p>';
+    document.getElementById('content').innerHTML = `<p style="padding:20px;text-align:center;">Error cargando menú: ${err.message}<br>Verificá que products.json esté en la carpeta.</p>`;
   });
 
-/* ---------------------------
-   Cerrar modal al tocar afuera
-   --------------------------- */
+/* Cerrar modal click afuera */
 function showCartModal(){ document.getElementById('cartModal').style.display = 'block'; }
 function hideCartModal(e){ if (e.target.id === 'cartModal') document.getElementById('cartModal').style.display = 'none'; }
 </script>
