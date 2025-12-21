@@ -4,19 +4,19 @@
       "id": "ensaladas",
       "name": "Ensaladas",
       "items": [
-        { "name": "Ensalada 2019", "description": "Palta, rúcula, parmesano y tomate cherry", "price": 14000 },
-        { "name": "Ensalada Caesar", "description": "Mix de hojas verdes, pollo, tomates cherry, parmesano, croutons y aderezo caesar", "price": 14500 },
-        { "name": "Ensalada Capresse", "description": "Tomate, queso y albahaca", "price": 14500 },
-        { "name": "Ensalada Las Palmas", "description": "Palmitos, tomate cherry, atún, choclo, aceitunas negras y queso Mar del Plata", "price": 15000 },
-        { "name": "Ensalada Latún", "description": "Arroz, tomate, atún y huevo duro", "price": 14500 },
-        { "name": "Ensalada Mar del Plata", "description": "Arroz, tomate, muzzarella, pollo, choclo y aceitunas negras", "price": 14000 },
-        { "name": "Ensalada Paisa", "description": "Arroz, tomate, muzzarella, pollo, choclo y aceitunas negra", "price": 14500 },
-        { "name": "Ensalada PG", "description": "Tomate cherry, palta, hojas verdes, almendras tostadas y huevo poche", "price": 15000 },
-        { "name": "Ensalada Santa", "description": "Lechuga, rúcula, langostinos apanados, semillas y queso parmesano", "price": 16000 },
-        { "name": "Ensalada Teresita", "description": "Palta, gambas, zanahoria, tomate y huevo duro", "price": 14500 },
-        { "name": "Ensalada Tres Ingredientes", "description": "Elegir tres de los siguientes: Lechuga, tomate, apio, rúcula, zanahoria, choclo, arroz o yamani", "price": 13500 },
-        { "name": "Ensalada Coronada", "description": "Arroz yamani, atún, cebolla morada, cherry y queso Mar del Plata", "price": 14500 },
-        { "name": "Ensalada Leo", "description": "Atún, cherry, palta y palmitos", "price": 15000 }
+        { "name": "Ensalada 2019", "description": "Palta, rúcula, parmesano y tomate cherry", "price": 15000 },
+        { "name": "Ensalada Caesar", "description": "Mix de hojas verdes, pollo, tomates cherry, parmesano, croutons y aderezo caesar", "price": 17000 },
+        { "name": "Ensalada Capresse", "description": "Tomate, queso y albahaca", "price": 15000 },
+        { "name": "Ensalada Las Palmas", "description": "Palmitos, tomate cherry, atún, choclo, aceitunas negras y queso Mar del Plata", "price": 19500 },
+        { "name": "Ensalada Latún", "description": "Arroz, tomate, atún y huevo duro", "price": 18000 },
+        { "name": "Ensalada Mossstri", "description": "Arroz, pollo, queso Mar del Plata, huevo, zanahoria y choclo", "price": 18500 },
+        { "name": "Ensalada Mar del Plata", "description": "Arroz, tomate, muzzarella, pollo, choclo y aceitunas negra", "price": 18500 },
+        { "name": "Ensalada PG", "description": "Tomate cherry, palta, hojas verdes, almendras tostadas y huevo poche", "price": 18500 },
+        { "name": "Ensalada Santa", "description": "Lechuga, rúcula, langostinos apanados, semillas y queso parmesano", "price": 19500 },
+        { "name": "Ensalada Teresita", "description": "Palta, gambas, zanahoria, tomate y huevo duro", "price": 19500 },
+        { "name": "Ensalada Tres Ingredientes", "description": "Elegir tres de los siguientes: Lechuga, tomate, apio, rúcula, zanahoria, choclo, arroz o yamani", "price": 14000 },
+        { "name": "Ensalada Coronada", "description": "Arroz yamani, atún, cebolla morada, cherry y queso Mar del Plata", "price": 19500 },
+        { "name": "Ensalada Leo", "description": "Atún, cherry, palta y palmitos", "price": 18500 }
       ]
     },
     {
@@ -25,7 +25,7 @@
       "items": [
         {
           "name": "1/4 de pollo grille",
-          "price": 20000,
+          "price": 23000,
           "options": {
             "parte": ["Pechuga", "Pata muslo"],
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
@@ -34,7 +34,7 @@
         { "name": "Cono papas", "price": 10500 },
         { "name": "Cono patitas", "price": 13000 },
         { "name": "Cono Rabas", "price": 21000 },
-        { "name": "Langostinos apanados 8/10 piezas", "price": 22000 },
+        { "name": "Langostinos apanados 8/10 piezas", "price": 26000 },
         {
           "name": "Menú infantil",
           "price": 15000,
@@ -46,68 +46,68 @@
         },
         {
           "name": "Milanesa de ternera",
-          "price": 20000,
+          "price": 24000,
           "options": {
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
         },
         {
           "name": "Milanesa de ternera napolitana",
-          "price": 22000,
+          "price": 27000,
           "options": {
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
         },
         { "name": "Papas fritas bastón", "price": 12000 },
         { "name": "Papas fritas bastón a caballo", "price": 15000 },
-        { "name": "Porción de rabas", "price": 27000 },
-        { "name": "Porción de arroz", "price": 9000 },
-        { "name": "Porción de puré", "price": 9000 },
-        { "name": "Revuelto gramajo", "price": 23000 },
+        { "name": "Porción de rabas", "price": 29000 },
+        { "name": "Timbal de arroz", "price": 10000 },
+        { "name": "Porción de puré", "price": 10000 },
+        { "name": "Revuelto gramajo", "price": 25500 },
         {
           "name": "Suprema",
-          "price": 20000,
+          "price": 24000,
           "options": {
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
         },
         {
           "name": "Suprema Napolitana",
-          "price": 22000,
+          "price": 27000,
           "options": {
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
         },
-        { "name": "Tortilla de papas", "price": 16000 }
+        { "name": "Tortilla de papas", "price": 19500 }
       ]
     },
     {
       "id": "sandwiches",
       "name": "Sandwiches",
       "items": [
-        { "name": "Atún, tomate, queso y mayonesa", "price": 14000 },
-        { "name": "Blanco de ave completo", "price": 14500 },
-        { "name": "Blanco de ave tomate y lechuga", "price": 13000 },
-        { "name": "Don Julio", "description": "Jamón crudo, manteca y queso", "price": 12500 },
-        { "name": "Hamburguesa completa", "price": 14000 },
-        { "name": "Hamburguesa dos ingredientes", "description": "Elegir dos ingredientes", "price": 13000, "twoIngredients": true },
-        { "name": "Jamón cocido y queso", "price": 10500 },
-        { "name": "Jamón crudo y queso", "price": 12000 },
-        { "name": "Lomo completo", "price": 20000 },
-        { "name": "Lomo dos ingredientes", "description": "Elegir dos ingredientes", "price": 17500, "twoIngredients": true },
-        { "name": "Milanesa completa", "price": 17500 },
-        { "name": "Milanesa dos ingredientes", "description": "Elegir dos ingredientes", "price": 15500, "twoIngredients": true },
-        { "name": "Pollo grille, queso gratinado, tomate y palta", "price": 17000 },
-        { "name": "Primavera de jamón crudo", "price": 14000 },
-        { "name": "Primavera de jamón cocido", "price": 10500 },
-        { "name": "Suprema completa", "price": 17500 },
-        { "name": "Suprema dos ingredientes", "description": "Elegir dos ingredientes", "price": 15500, "twoIngredients": true },
-        { "name": "Triple de miga jamón y queso", "price": 10500 },
-        { "name": "Vegetariano 1", "description": "Rúcula, tomate, palta, queso crema y zanahoria", "price": 11500 },
-        { "name": "Vegetariano 2", "description": "Palta, queso y tomate", "price": 11500 },
-        { "name": "Vegetariano 3", "description": "Berenjena grillada, aceite de albahaca, muzzarella gratinada y tomate caramelizado", "price": 11500 },
-        { "name": "Vegetariano 4", "description": "Queso gruyere, hojas de albahaca, tomate y aceite de oliva", "price": 11000 },
-        { "name": "Pancho", "price": 5000 }
+        { "name": "Atún, tomate, queso y mayonesa", "price": 15000 },
+        { "name": "Blanco de ave completo", "price": 18500 },
+        { "name": "Blanco de ave tomate y lechuga", "price": 15000 },
+        { "name": "Don Julio", "description": "Jamón crudo, manteca y queso", "price": 16000 },
+        { "name": "Hamburguesa completa", "price": 17000 },
+        { "name": "Hamburguesa dos ingredientes", "description": "Elegir dos ingredientes", "price": 14500, "twoIngredients": true },
+        { "name": "Jamón cocido y queso", "price": 11500 },
+        { "name": "Jamón crudo y queso", "price": 14000 },
+        { "name": "Lomo completo", "price": 22500 },
+        { "name": "Lomo dos ingredientes", "description": "Elegir dos ingredientes", "price": 19000, "twoIngredients": true },
+        { "name": "Milanesa completa", "price": 21000 },
+        { "name": "Milanesa dos ingredientes", "description": "Elegir dos ingredientes", "price": 17500, "twoIngredients": true },
+        { "name": "Pollo grille, queso gratinado, tomate y palta", "price": 20000 },
+        { "name": "Primavera de jamón crudo", "price": 17500 },
+        { "name": "Primavera de jamón cocido", "price": 14000 },
+        { "name": "Suprema completa", "price": 21000 },
+        { "name": "Suprema dos ingredientes", "description": "Elegir dos ingredientes", "price": 17500, "twoIngredients": true },
+        { "name": "Triple de miga jamón y queso", "price": 11500 },
+        { "name": "Vegetariano 1", "description": "Rúcula, tomate, palta, queso crema y zanahoria", "price": 12000 },
+        { "name": "Vegetariano 2", "description": "Palta, queso y tomate", "price": 12000 },
+        { "name": "Vegetariano 3", "description": "Berenjena grillada, aceite de albahaca, muzzarella gratinada y tomate caramelizado", "price": 12000 },
+        { "name": "Vegetariano 4", "description": "Queso gruyere, hojas de albahaca, tomate y aceite de oliva", "price": 12000 },
+        { "name": "Pancho", "price": 7000 }
       ]
     },
     {
@@ -120,17 +120,17 @@
         { "name": "Ensalada de frutas", "price": 6500 },
         {
           "name": "Promo café + medialuna",
-          "price": 3800,
+          "price": 4500,
           "note": "Aclarar tipo de café (cortado, con leche, lágrima, etc.)"
         },
         {
           "name": "Promo café + 1/2 tostado",
-          "price": 5000,
+          "price": 6500,
           "note": "Aclarar tipo de café"
         },
         {
           "name": "Waffle de dulce de leche, crema o mixto",
-          "price": 9000,
+          "price": 9500,
           "options": {
             "tipo": ["Dulce de leche", "Crema", "Mixto"]
           }
@@ -225,18 +225,18 @@
       "id": "cafeteria",
       "name": "Cafetería",
       "items": [
-        { "name": "Café", "price": 3000, "note": "Aclarar tipo (solo, cortado, con leche, lágrima, etc.)" },
-        { "name": "Capuccino / submarino", "price": 4000 },
+        { "name": "Café", "price": 3500, "note": "Aclarar tipo (solo, cortado, con leche, lágrima, etc.)" },
+        { "name": "Capuccino / submarino", "price": 5000 },
         { "name": "Chocolatada Cindor chica", "price": 3500 },
         { "name": "Churro unidad", "price": 1500 },
         { "name": "Churros 1/2 docena", "price": 7500 },
         { "name": "Churros docena", "price": 14000 },
-        { "name": "Medialunas unidad", "price": 1200 },
-        { "name": "1/2 docena de medialunas", "price": 5500 },
-        { "name": "Medialunas docena", "price": 10000 },
-        { "name": "Medialunas jamón y queso", "price": 4000 },
-        { "name": "Tostadas pan de molde porción", "price": 5000 },
-        { "name": "Té", "price": 3000, "note": "Aclarar variedad (té negro, verde, manzanilla, etc.)" }
+        { "name": "Medialunas unidad", "price": 1500 },
+        { "name": "1/2 docena de medialunas", "price": 6500 },
+        { "name": "Medialunas docena", "price": 12000 },
+        { "name": "Medialunas jamón y queso", "price": 7500 },
+        { "name": "Tostadas pan de molde porción", "price": 7500 },
+        { "name": "Té", "price": 3500, "note": "Aclarar variedad (té negro, verde, manzanilla, etc.)" }
       ]
     },
     {
