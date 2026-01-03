@@ -114,9 +114,9 @@
       "id": "merienda",
       "name": "Merienda",
       "items": [
-        { "name": "Chipá 1/4", "price": 5000 },
-        { "name": "Chipá 1/2", "price": 9500 },
-        { "name": "Chipá 1k", "price": 18000 },
+        { "name": "Chipá 1/4", "price": 8000 },
+        { "name": "Chipá 1/2", "price": 16000 },
+        { "name": "Chipá 1k", "price": 32000 },
         { "name": "Ensalada de frutas", "price": 6500 },
         {
           "name": "Promo café + medialuna",
