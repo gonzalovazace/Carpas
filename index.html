@@ -512,11 +512,21 @@ function renderSections(categories){
         }
 
         // 4. Extras Ensalada
-        if (isEnsalada){
-           const extras = [...ADICIONALES_COMUNES, ...ADICIONALES_PREMIUM];
-           optionsHtml += `<div style="margin-bottom:8px;"><strong>Extras:</strong><div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-            ${extras.map(e=>`<label style="font-size:13px;"><input type="checkbox" data-price="${e.price}" value="${e.name}"> ${e.name} ($${e.price})</label>`).join('')}
-           </div></div>`;
+if (isEnsalada){
+   const extras = [...ADICIONALES_COMUNES, ...ADICIONALES_PREMIUM];
+   optionsHtml += `
+   <div id="adicionales-${itemId}" style="margin-bottom:8px;">
+     <strong>Extras:</strong>
+     <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+       ${extras.map(e=>`
+         <label style="font-size:13px;">
+           <input type="checkbox" data-price="${e.price}" value="${e.name}">
+           ${e.name} (${formatPrice(e.price)})
+         </label>`).join('')}
+     </div>
+   </div>`;
+}
+
         }
 
         // 5. INPUT DE NOTAS (Con la lógica de usar el 'note' del JSON como título)
