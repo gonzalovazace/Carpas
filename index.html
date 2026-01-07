@@ -254,7 +254,9 @@ function prepareAndAddToCart(itemId, index, basePrice, categoryId){
 
   // --- 4. Adicionales (Ensaladas) ---
 const adics = Array.from(
-  document.querySelectorAll(`#adicionales-${itemId} input[type="checkbox"]:checked`)
+  document.querySelectorAll(
+    `#options-${itemId} input[type="checkbox"][data-price]:checked`
+  )
 );
 
   if (adics.length){
@@ -530,7 +532,6 @@ if (isEnsalada){
    </div>`;
 }
 
-        }
 
         // 5. INPUT DE NOTAS (Con la lógica de usar el 'note' del JSON como título)
         const noteLabel = item.note || "Notas / Aclaraciones";
