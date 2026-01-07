@@ -145,7 +145,7 @@
         { "name": "Agua con gas chica", "price": 4000 },
         {
           "name": "Gaseosa chica",
-          "price": 45000,
+          "price": 4500,
           "options": {
             "variedad": [
               "Pepsi",
