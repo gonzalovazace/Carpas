@@ -120,12 +120,12 @@
         { "name": "Ensalada de frutas", "price": 6500 },
         {
           "name": "Promo café + medialuna",
-          "price": 4500,
+          "price": 5000,
           "note": "Aclarar tipo de café (cortado, con leche, lágrima, etc.)"
         },
         {
           "name": "Promo café + 1/2 tostado",
-          "price": 6500,
+          "price": 7500,
           "note": "Aclarar tipo de café"
         },
         {
@@ -141,11 +141,11 @@
       "id": "bebidas-sin-alcohol",
       "name": "Bebidas sin alcohol",
       "items": [
-        { "name": "Agua sin gas chica", "price": 3000 },
-        { "name": "Agua con gas chica", "price": 3000 },
+        { "name": "Agua sin gas chica", "price": 4000 },
+        { "name": "Agua con gas chica", "price": 4000 },
         {
           "name": "Gaseosa chica",
-          "price": 3000,
+          "price": 45000,
           "options": {
             "variedad": [
               "Pepsi",
@@ -161,7 +161,7 @@
         },
         {
           "name": "Lata de gaseosa",
-          "price": 2500,
+          "price": 4000,
           "options": {
             "variedad": [
               "Pepsi",
@@ -177,7 +177,7 @@
         },
         {
           "name": "Gaseosa grande",
-          "price": 4000,
+          "price": 8000,
           "options": {
             "variedad": [
               "Pepsi",
@@ -191,43 +191,43 @@
             ]
           }
         },
-        { "name": "Jarra limonada grande", "price": 8000 },
-        { "name": "Jugo exprimido 480cc", "price": 5500 },
+        { "name": "Jarra limonada grande", "price": 10000 },
+        { "name": "Jugo exprimido 480cc", "price": 7000 },
         {
           "name": "Levite chica",
-          "price": 3000,
+          "price": 4500,
           "options": {
             "sabor": ["Manzana", "Manzana Cero", "Pomelo", "Pomelo Cero", "Naranja", "Naranja Cero", "Pera"]
           }
         },
         {
           "name": "Levite grande",
-          "price": 4000,
+          "price": 8000,
           "options": {
             "sabor": ["Manzana", "Manzana Cero", "Pomelo", "Pomelo Cero", "Naranja", "Naranja Cero", "Pera"]
           }
         },
         {
           "name": "Licuado chico",
-          "price": 5500,
+          "price": 7500,
           "note": "Ejemplo: banana + leche"
         },
         {
           "name": "Licuado grande",
-          "price": 6500,
+          "price": 9000,
           "note": "Ejemplo: banana + leche"
         },
-        { "name": "Vaso de limonada chico", "price": 5000 },
-        { "name": "Vaso de limonada grande", "price": 6500 }
+        { "name": "Vaso de limonada chico", "price": 6500 },
+        { "name": "Vaso de limonada grande", "price": 8000 }
       ]
     },
      {
       "id": "cafeteria",
       "name": "Cafetería",
       "items": [
-        { "name": "Café", "price": 3500, "note": "Aclarar tipo (solo, cortado, con leche, lágrima, etc.)" },
-        { "name": "Capuccino / submarino", "price": 5000 },
-        { "name": "Chocolatada Cindor chica", "price": 3500 },
+        { "name": "Café", "price": 4500, "note": "Aclarar tipo (solo, cortado, con leche, lágrima, etc.)" },
+        { "name": "Capuccino / submarino", "price": 5500 },
+        { "name": "Chocolatada Cindor chica", "price": 4500 },
         { "name": "Churro unidad", "price": 1500 },
         { "name": "Churros 1/2 docena", "price": 7500 },
         { "name": "Churros docena", "price": 14000 },
