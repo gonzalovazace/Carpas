@@ -253,7 +253,12 @@ function prepareAndAddToCart(itemId, index, basePrice, categoryId){
   }
 
   // --- 4. Adicionales (Ensaladas) ---
-  const adics = Array.from(document.querySelectorAll(`#adicionales-${itemId} input[type="checkbox"]:checked`));
+const adics = Array.from(
+  document.querySelectorAll(
+    `#options-${itemId} input[type="checkbox"][data-price]:checked`
+  )
+);
+
   if (adics.length){
     details.push("+ " + adics.map(a => a.value).join(", "));
     adics.forEach(a => finalPrice += parseInt(a.dataset.price));
