@@ -143,6 +143,7 @@
       "items": [
         { "name": "Agua sin gas chica", "price": 4000 },
         { "name": "Agua con gas chica", "price": 4000 },
+        { "name": "Agua sin gas grande", "price": 8000 },
         {
           "name": "Gaseosa chica",
           "price": 4500,
