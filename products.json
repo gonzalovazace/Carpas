@@ -9,7 +9,7 @@
         { "name": "Ensalada Capresse", "description": "Tomate, queso y albahaca", "price": 15000 },
         { "name": "Ensalada Las Palmas", "description": "Palmitos, tomate cherry, atún, choclo, aceitunas negras y queso Mar del Plata", "price": 19500 },
         { "name": "Ensalada Latún", "description": "Arroz, tomate, atún y huevo duro", "price": 18000 },
-        { "name": "Ensalada Mossstri", "description": "Arroz, pollo, queso Mar del Plata, huevo, zanahoria y choclo", "price": 18500 },
+        { "name": "Ensalada Paisssa", "description": "Arroz, pollo, queso Mar del Plata, huevo, zanahoria y choclo", "price": 18500 },
         { "name": "Ensalada Mar del Plata", "description": "Arroz, tomate, muzzarella, pollo, choclo y aceitunas negra", "price": 18500 },
         { "name": "Ensalada PG", "description": "Tomate cherry, palta, hojas verdes, almendras tostadas y huevo poche", "price": 18500 },
         { "name": "Ensalada Santa", "description": "Lechuga, rúcula, langostinos apanados, semillas y queso parmesano", "price": 19500 },
