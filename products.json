@@ -134,6 +134,10 @@
           "options": {
             "tipo": ["Dulce de leche", "Crema", "Mixto"]
           }
+        },
+        {
+          "name": "Waffle con nutella",
+          "price": 9000,
         }
       ]
     },
