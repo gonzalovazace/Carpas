@@ -4,19 +4,19 @@
       "id": "ensaladas",
       "name": "Ensaladas",
       "items": [
-        { "name": "Ensalada 2019", "description": "Palta, rúcula, parmesano y tomate cherry", "price": 15000 },
-        { "name": "Ensalada Caesar", "description": "Mix de hojas verdes, pollo, tomates cherry, parmesano, croutons y aderezo caesar", "price": 17000 },
-        { "name": "Ensalada Capresse", "description": "Tomate, queso y albahaca", "price": 15000 },
-        { "name": "Ensalada Las Palmas", "description": "Palmitos, tomate cherry, atún, choclo, aceitunas negras y queso Mar del Plata", "price": 19500 },
-        { "name": "Ensalada Latún", "description": "Arroz, tomate, atún y huevo duro", "price": 18000 },
-        { "name": "Ensalada Paisssa", "description": "Arroz, pollo, queso Mar del Plata, huevo, zanahoria y choclo", "price": 18500 },
-        { "name": "Ensalada Mar del Plata", "description": "Arroz, tomate, muzzarella, pollo, choclo y aceitunas negra", "price": 18500 },
-        { "name": "Ensalada PG", "description": "Tomate cherry, palta, hojas verdes, almendras tostadas y huevo poche", "price": 18500 },
-        { "name": "Ensalada Santa", "description": "Lechuga, rúcula, langostinos apanados, semillas y queso parmesano", "price": 19500 },
-        { "name": "Ensalada Teresita", "description": "Palta, gambas, zanahoria, tomate y huevo duro", "price": 19500 },
-        { "name": "Ensalada Tres Ingredientes", "description": "Elegir tres de los siguientes: Lechuga, tomate, apio, rúcula, zanahoria, choclo, arroz o yamani", "price": 14000 },
-        { "name": "Ensalada Coronada", "description": "Arroz yamani, atún, cebolla morada, cherry y queso Mar del Plata", "price": 19500 },
-        { "name": "Ensalada Leo", "description": "Atún, cherry, palta y palmitos", "price": 18500 }
+        { "name": "Ensalada 2019", "description": "Palta, rúcula, parmesano y tomate cherry", "price": 20000 },
+        { "name": "Ensalada Caesar", "description": "Mix de hojas verdes, pollo, tomates cherry, parmesano, croutons y aderezo caesar", "price": 23000 },
+        { "name": "Ensalada Capresse", "description": "Tomate, queso y albahaca", "price": 23000 },
+        { "name": "Ensalada Las Palmas", "description": "Palmitos, tomate cherry, atún, choclo, aceitunas negras y queso Mar del Plata", "price": 26000 },
+        { "name": "Ensalada Latún", "description": "Arroz, tomate, atún y huevo duro", "price": 26000 },
+        { "name": "Ensalada Paisssa", "description": "Arroz, pollo, queso Mar del Plata, huevo, zanahoria y choclo", "price": 23000 },
+        { "name": "Ensalada Mar del Plata", "description": "Arroz, tomate, muzzarella, pollo, choclo y aceitunas negra", "price": 26000 },
+        { "name": "Ensalada PG", "description": "Tomate cherry, palta, hojas verdes, almendras tostadas y huevo poche", "price": 26000 },
+        { "name": "Ensalada Santa", "description": "Lechuga, rúcula, langostinos apanados, semillas y queso parmesano", "price": 26000 },
+        { "name": "Ensalada Teresita", "description": "Palta, gambas, zanahoria, tomate y huevo duro", "price": 26000 },
+        { "name": "Ensalada Tres Ingredientes", "description": "Elegir tres de los siguientes: Lechuga, tomate, apio, rúcula, zanahoria, choclo, arroz o yamani", "price": 20000 },
+        { "name": "Ensalada Coronada", "description": "Arroz yamani, atún, cebolla morada, cherry y queso Mar del Plata", "price": 26000 },
+        { "name": "Ensalada Leo", "description": "Atún, cherry, palta y palmitos", "price": 23000 }
       ]
     },
     {
@@ -25,19 +25,19 @@
       "items": [
         {
           "name": "1/4 de pollo grille",
-          "price": 23000,
+          "price": 29000,
           "options": {
             "parte": ["Pechuga", "Pata muslo"],
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
         },
-        { "name": "Cono papas", "price": 10500 },
-        { "name": "Cono patitas", "price": 13000 },
+        { "name": "Cono papas", "price": 12500 },
+        { "name": "Cono patitas", "price": 15000 },
         { "name": "Cono Rabas", "price": 21000 },
-        { "name": "Langostinos apanados 8/10 piezas", "price": 26000 },
+        { "name": "Langostinos apanados 8/10 piezas", "price": 33000 },
         {
           "name": "Menú infantil",
-          "price": 15000,
+          "price": 17000,
           "options": {
             "plato": ["Hamburguesa", "Milanesa", "Suprema", "Patitas de pollo", "Pasta seca"],
             "acompañamiento": ["Papas fritas", "Puré"],
@@ -46,67 +46,67 @@
         },
         {
           "name": "Milanesa de ternera",
-          "price": 24000,
+          "price": 29000,
           "options": {
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
         },
         {
           "name": "Milanesa de ternera napolitana",
-          "price": 27000,
+          "price": 32000,
           "options": {
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
         },
-        { "name": "Papas fritas bastón", "price": 12000 },
-        { "name": "Papas fritas bastón a caballo", "price": 15000 },
-        { "name": "Porción de rabas", "price": 29000 },
+        { "name": "Papas fritas bastón", "price": 15000 },
+        { "name": "Papas fritas bastón a caballo", "price": 18000 },
+        { "name": "Porción de rabas", "price": 30000 },
         { "name": "Timbal de arroz", "price": 10000 },
         { "name": "Porción de puré", "price": 10000 },
-        { "name": "Revuelto gramajo", "price": 25500 },
+        { "name": "Revuelto gramajo", "price": 32000 },
         {
           "name": "Suprema",
-          "price": 24000,
+          "price": 29000,
           "options": {
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
         },
         {
           "name": "Suprema Napolitana",
-          "price": 27000,
+          "price": 32000,
           "options": {
             "guarnicion": ["Papas fritas", "Puré de papas", "Puré de calabaza", "Puré mixto", "Vegetales salteados", "Papas naturales"]
           }
         },
-        { "name": "Tortilla de papas", "price": 19500 }
+        { "name": "Tortilla de papas", "price": 21000 }
       ]
     },
     {
       "id": "sandwiches",
       "name": "Sandwiches",
       "items": [
-        { "name": "Atún, tomate, queso y mayonesa", "price": 15000 },
-        { "name": "Blanco de ave completo", "price": 18500 },
-        { "name": "Blanco de ave tomate y lechuga", "price": 15000 },
-        { "name": "Don Julio", "description": "Jamón crudo, manteca y queso", "price": 16000 },
-        { "name": "Hamburguesa completa", "price": 17000 },
-        { "name": "Hamburguesa dos ingredientes", "description": "Elegir dos ingredientes", "price": 14500, "twoIngredients": true },
-        { "name": "Jamón cocido y queso", "price": 11500 },
-        { "name": "Jamón crudo y queso", "price": 14000 },
-        { "name": "Lomo completo", "price": 22500 },
-        { "name": "Lomo dos ingredientes", "description": "Elegir dos ingredientes", "price": 19000, "twoIngredients": true },
-        { "name": "Milanesa completa", "price": 21000 },
-        { "name": "Milanesa dos ingredientes", "description": "Elegir dos ingredientes", "price": 17500, "twoIngredients": true },
-        { "name": "Pollo grille, queso gratinado, tomate y palta", "price": 20000 },
-        { "name": "Primavera de jamón crudo", "price": 17500 },
-        { "name": "Primavera de jamón cocido", "price": 14000 },
-        { "name": "Suprema completa", "price": 21000 },
-        { "name": "Suprema dos ingredientes", "description": "Elegir dos ingredientes", "price": 17500, "twoIngredients": true },
-        { "name": "Triple de miga jamón y queso", "price": 11500 },
-        { "name": "Vegetariano 1", "description": "Rúcula, tomate, palta, queso crema y zanahoria", "price": 12000 },
-        { "name": "Vegetariano 2", "description": "Palta, queso y tomate", "price": 12000 },
-        { "name": "Vegetariano 3", "description": "Berenjena grillada, aceite de albahaca, muzzarella gratinada y tomate caramelizado", "price": 12000 },
-        { "name": "Vegetariano 4", "description": "Queso gruyere, hojas de albahaca, tomate y aceite de oliva", "price": 12000 },
+        { "name": "Atún, tomate, queso y mayonesa", "price": 20000 },
+        { "name": "Blanco de ave completo", "price": 21000 },
+        { "name": "Blanco de ave tomate y lechuga", "price": 18000 },
+        { "name": "Don Julio", "description": "Jamón crudo, manteca y queso", "price": 17000 },
+        { "name": "Hamburguesa completa", "price": 20000 },
+        { "name": "Hamburguesa dos ingredientes", "description": "Elegir dos ingredientes", "price": 17000, "twoIngredients": true },
+        { "name": "Jamón cocido y queso", "price": 13000 },
+        { "name": "Jamón crudo y queso", "price": 16500 },
+        { "name": "Lomo completo", "price": 32000 },
+        { "name": "Lomo dos ingredientes", "description": "Elegir dos ingredientes", "price": 28000, "twoIngredients": true },
+        { "name": "Milanesa completa", "price": 30000 },
+        { "name": "Milanesa dos ingredientes", "description": "Elegir dos ingredientes", "price": 26500, "twoIngredients": true },
+        { "name": "Pollo grille, queso gratinado, tomate y palta", "price": 28000 },
+        { "name": "Primavera de jamón crudo", "price": 21000 },
+        { "name": "Primavera de jamón cocido", "price": 16500 },
+        { "name": "Suprema completa", "price": 30000 },
+        { "name": "Suprema dos ingredientes", "description": "Elegir dos ingredientes", "price": 26500, "twoIngredients": true },
+        { "name": "Triple de miga jamón y queso", "price": 13000 },
+        { "name": "Vegetariano 1", "description": "Rúcula, tomate, palta, queso crema y zanahoria", "price": 18000 },
+        { "name": "Vegetariano 2", "description": "Palta, queso y tomate", "price": 18000 },
+        { "name": "Vegetariano 3", "description": "Berenjena grillada, aceite de albahaca, muzzarella gratinada y tomate caramelizado", "price": 18000 },
+        { "name": "Vegetariano 4", "description": "Queso gruyere, hojas de albahaca, tomate y aceite de oliva", "price": 18000 },
         { "name": "Pancho", "price": 7000 }
       ]
     },
@@ -248,106 +248,100 @@
       "id": "cervezas",
       "name": "Cervezas y jarras",
       "items": [
-        { "name": "Balde de Budweiser x6", "price": 30000 },
-        { "name": "Balde de Coronas x6", "price": 35000 },
-        { "name": "Budweiser 355cc", "price": 6000 },
-        { "name": "Corona porrón 330cc", "price": 7000 },
+        { "name": "Balde de Budweiser x6", "price": 32500 },
+        { "name": "Balde de Coronas x6", "price": 37500 },
+        { "name": "Budweiser 355cc", "price": 6500 },
+        { "name": "Corona porrón 330cc", "price": 7500 },
         {
-          "name": "Patagonia lata 473cc",
-          "price": 7000,
+          "name": "Patagonia lata 410cc",
+          "price": 7500,
           "options": {
             "estilo": ["Lager (Rubia)", "Amber (Roja)", "24.7 (IPA)"]
           }
         },
-        { "name": "Stella 970cc", "price": 12000 },
+        { "name": "Stella 970cc", "price": 14000 },
         { "name": "Stella porrón 330cc", "price": 7000 },
-        { "name": "Stella 0.0 porrón 330cc", "price": 7000, "description": "Sin alcohol" },
-        { "name": "Corona Cero porrón 330cc", "price": 7000, "description": "Sin alcohol" },
+        { "name": "Stella 0.0 porrón 330cc", "price": 5000, "description": "Sin alcohol" },
+        { "name": "Corona Cero porrón 330cc", "price": 5000, "description": "Sin alcohol" },
         {
           "name": "Jarra de frutas con Norton Cosecha Tardía",
-          "price": 18000,
+          "price": 22000,
           "description": "Incluye frutas + vino blanco dulce"
         },
         {
           "name": "Jarra de frutas con Altos del Plata Chardonnay",
-          "price": 21000,
+          "price": 25000,
           "description": "Incluye frutas + vino blanco chardonnay"
         },
         {
           "name": "Jarra de frutas con Chandon Extra Brut / Delice",
-          "price": 38000,
+          "price": 49000,
           "description": "Incluye frutas + espumante"
         },
         {
           "name": "Jarra de frutas con vino o espumante a elección",
-          "price": 18000,
-          "description": "Después de elegir la jarra, seleccionar un vino blanco de la carta"
+          "price": 9000,
+          "description": "Después de elegir la jarra, seleccionar un vino de la carta"
         },
-        { "name": "Tinto de verano con vino de la casa", "price": 21000 }
+        { "name": "Tinto de verano con vino de la casa", "price": 25000 }
       ]
     },
     {
       "id": "vinos",
       "name": "Vinos",
       "items": [
-        { "name": "Altos del Plata Chardonnay 750cc", "price": 13000 },
-        { "name": "Altos del Plata Malbec 750cc", "price": 12000 },
-        { "name": "Obra Reserva Malbec 750cc", "price": 19000 },
-        { "name": "Séptima rosado 750cc", "price": 15000 },
-        { "name": "Terrazas Reserva Chardonnay 750cc", "price": 19000 },
-        { "name": "Terrazas Reserva Malbec 750cc", "price": 19000 },
-        { "name": "Terrazas Reserva Malbec 375cc", "price": 13000 },
-        { "name": "Terrazas Reserva Rose 750cc", "price": 19000 },
-        { "name": "Terrazas Origen Malbec 750cc", "price": 25000 },
-        { "name": "Animal Chardonnay 750cc", "price": 20000 },
-        { "name": "Animal Malbec 750cc", "price": 20000 },
-        { "name": "Callia tardío blanco", "price": 10000 },
-        { "name": "Famiglia Rosé 750cc", "price": 15000 },
-        { "name": "Famiglia Red Blend 750cc", "price": 15000 },
-        { "name": "Cafayate dulce tardío 750cc", "price": 9000 },
-        { "name": "Cafayate Reserva Malbec 750cc", "price": 12500 },
-        { "name": "Cafayate Terrior de Altura Torrontés 750cc", "price": 19000 }
+        { "name": "Altos del Plata Chardonnay 750cc", "price": 16000 },
+        { "name": "Altos del Plata Malbec 750cc", "price": 16000 },
+        { "name": "Obra Reserva Malbec 750cc", "price": 24000 },
+        { "name": "Séptima rosado 750cc", "price": 19000 },
+        { "name": "Terrazas Reserva Chardonnay 750cc", "price": 27000 },
+        { "name": "Terrazas Reserva Malbec 750cc", "price": 27000 },
+        { "name": "Terrazas Reserva Malbec 375cc", "price": 15000 },
+        { "name": "Terrazas Reserva Rose 750cc", "price": 27000 },
+        { "name": "Terrazas Origen Malbec 750cc", "price": 32000 },
+        { "name": "Animal Chardonnay 750cc", "price": 21000 },
+        { "name": "Animal Malbec 750cc", "price": 21000 },
+        { "name": "Callia tardío blanco", "price": 13000 },
+        { "name": "Famiglia Rosé 750cc", "price": 19000 },
+        { "name": "Famiglia Red Blend 750cc", "price": 19000 },
+        { "name": "Cafayate dulce tardío 750cc", "price": 13000 },
+        { "name": "Cafayate Reserva Malbec 750cc", "price": 19000 },
+        { "name": "Cafayate Terroir de Altura Torrontés 750cc", "price": 24000 }
       ]
     },
     {
       "id": "espumantes",
       "name": "Espumantes",
       "items": [
-        { "name": "Chandon 375cc", "price": 16000 },
-        { "name": "Chandon 750cc", "price": 36000 },
-        { "name": "Chandon 1500cc", "price": 50000 },
-        { "name": "Chandon Aperitif 750cc", "price": 28000 },
-        { "name": "Chandon Brut Nature / Rosé 750cc", "price": 35000 },
-        { "name": "Baron B Brut Nature 750cc", "price": 55000 },
-        { "name": "Baron B Brut Rosé 750cc", "price": 55000 },
-        { "name": "Baron B Extra Brut 750cc", "price": 40000 }
+        { "name": "Chandon 375cc", "price": 22000 },
+        { "name": "Chandon 750cc", "price": 40000 },
+        { "name": "Chandon 1500cc", "price": 55000 },
+        { "name": "Chandon Aperitif 750cc", "price": 40000 },
+        { "name": "Chandon Brut Nature / Rosé 750cc", "price": 45000 },
+        { "name": "Baron B Brut Nature 750cc", "price": 75000 },
+        { "name": "Baron B Brut Rosé 750cc", "price": 75000 },
+        { "name": "Baron B Extra Brut 750cc", "price": 55000 }
       ]
     },
     {
       "id": "tragos",
       "name": "Tragos",
       "items": [
-        { "name": "Aperol Spritz", "price": 9000 },
-        { "name": "Branca Cola", "price": 7000 },
-        { "name": "Caipirinha", "price": 8500, "note": "Aclarar fruta (limón, maracuyá, frutos rojos)" },
-        { "name": "Campari", "price": 7000 },
-        { "name": "Caipiroska", "price": 8500, "note": "Aclarar fruta (limón, maracuyá, frutos rojos)"  },
-        { "name": "Carpano Orange", "price": 7000 },
-        { "name": "Daikiri frutilla / durazno / ananá", "price": 8500, "note": "Aclarar sabor" },
-        { "name": "Ramazzotti Rosato Spritz", "price": 8000 },
-        { "name": "Ramazzotti Rosato Tonic", "price": 8000 },
-        { "name": "Cuba Libre", "price": 7000 },
-        { "name": "Havana Club", "price": 10000 },
-        { "name": "Absolut", "price": 10000 },
-        { "name": "Beefeater Tonic", "price": 8000 },
-        { "name": "Bombay", "price": 10000 },
-        { "name": "Brighton Tonic", "price": 9000 },
-        { "name": "Hendrick's", "price": 11000 },
-        { "name": "Oso Negro", "price": 7000 },
-        { "name": "Tanqueray", "price": 7000 },
-        { "name": "Whiscola", "price": 8000 },
-        { "name": "Jameson", "price": 10000 },
-        { "name": "Chivas 12 años", "price": 12000 }
+        { "name": "Aperol Spritz", "price": 12000 },
+        { "name": "Branca Cola", "price": 9000 },
+        { "name": "Caipirinha", "price": 11000, "note": "Aclarar fruta (lima, maracuyá, frutos rojos)" },
+        { "name": "Campari", "price": 10000 },
+        { "name": "Caipiroska", "price": 11000, "note": "Aclarar fruta (lima, maracuyá, frutos rojos)"  },
+        { "name": "Carpano Orange", "price": 9000 },
+        { "name": "Daikiri frutilla / durazno / ananá", "price": 11000, "note": "Aclarar sabor" },
+        { "name": "Ramazzotti Rosato Spritz", "price": 12000 },
+        { "name": "Ramazzotti Rosato Tonic", "price": 12000 },
+        { "name": "Havana Club", "price": 11000 },
+        { "name": "Absolut", "price": 11000 },
+        { "name": "Jack Daniel´s cola", "price": 11000 },
+        { "name": "Beefeater Tonic", "price": 11000 },
+        { "name": "Hendrick's tonic", "price": 13000 },
+        { "name": "Oso Negro tonic", "price": 9000 }
       ]
     }
   ]
